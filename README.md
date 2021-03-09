@@ -5,3 +5,4 @@
 
 ## Команда авторов 
 [Ни Эдуард](https://github.com/EdwardNee)
+[Ефимов Даниил](https://github.com/daefimov-1)
