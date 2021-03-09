@@ -5,3 +5,4 @@
 
 ## Команда авторов 
 [Ни Эдуард](https://github.com/EdwardNee)
+[Nikita_Fed](https://github.com/wnikiti4)
