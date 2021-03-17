@@ -6,3 +6,4 @@
 ## Команда авторов 
 [Ни Эдуард](https://github.com/EdwardNee)  
 [Ефимов Даниил](https://github.com/daefimov-1)
+[Петропавловский Андрей](https://github.com/alf3ratz)
