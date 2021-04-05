@@ -1,4 +1,4 @@
-package com.example.emptyact
+package com.example.project
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
