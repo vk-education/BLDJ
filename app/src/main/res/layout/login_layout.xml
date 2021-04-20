@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="#F3F3F3"
+        android:background="@color/app_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,14 +15,16 @@
             android:src="@drawable/logo" />
 
     <EditText
-
+            android:id="@+id/login_edit"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/go_bttn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Введите почту от HSE"
+            android:hint="Введите почту от HSE"
+            android:maxLines="1"
             android:drawableStart="@drawable/mail"
+            app:layout_constraintDimensionRatio="1:1"
             android:drawablePadding="10dp"
             android:layout_marginBottom="48dp" />
 
@@ -30,6 +32,7 @@
             android:id="@+id/go_bttn"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:text="Далее"
+            android:textSize="24sp"
             android:layout_marginBottom="100dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
