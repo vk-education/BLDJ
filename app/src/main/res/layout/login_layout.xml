@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#F3F3F3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="62dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/logo" />
+
+    <EditText
+
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/go_bttn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Введите почту от HSE"
+            android:drawableStart="@drawable/mail"
+            android:drawablePadding="10dp"
+            android:layout_marginBottom="48dp" />
+
+    <Button
+            android:id="@+id/go_bttn"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="Далее"
+            android:layout_marginBottom="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:background="@drawable/button_corners"
+            android:shadowColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
