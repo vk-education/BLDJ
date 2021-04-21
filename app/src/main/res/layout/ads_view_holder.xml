@@ -53,13 +53,14 @@
             android:text="Сегодня в 12:17" />
 
 
-    <Button
+    <ImageButton
             android:layout_marginTop="24dp"
             android:id="@+id/ad_info_btn"
             android:layout_height="50dp"
             android:layout_width="150dp"
             android:layout_marginBottom="5dp"
-            android:drawableLeft="@drawable/home"
+            android:src="@drawable/info"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_corners"
@@ -67,12 +68,14 @@
             app:layout_constraintEnd_toStartOf="@id/ad_betraveler_btn"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-    <Button
+    <ImageButton
             android:layout_marginTop="24dp"
             android:id="@+id/ad_betraveler_btn"
             android:layout_height="50dp"
             android:layout_width="150dp"
             android:layout_marginBottom="5dp"
+            android:src="@drawable/add_user"
+            android:scaleType="fitCenter"
             android:background="@drawable/button_corners"
             android:drawableLeft="@drawable/add_user"
             app:layout_constraintTop_toBottomOf="@id/ad_place"
