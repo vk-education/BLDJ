@@ -6,8 +6,7 @@
         android:layout_height="match_parent"
         android:background="@color/app_color"
         tools:context=".CreateFragment">
-
-
+    
     <TextView
             android:id="@+id/create_text"
             android:layout_height="wrap_content"
@@ -21,7 +20,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="32sp" />
 
-    <FrameLayout
+    <RelativeLayout
             android:id="@+id/frame_way"
             android:layout_height="100dp"
             android:layout_width="0dp"
@@ -32,27 +31,29 @@
             app:layout_constraintTop_toBottomOf="@id/create_text">
 
         <EditText
+                android:layout_marginStart="3dp"
                 android:drawableStart="@drawable/ic_a_point"
                 android:id="@+id/A_point"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:drawablePadding="12dp"
+                android:layout_alignParentTop="true"
                 android:textColor="@color/black"
                 android:layout_marginBottom="20dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_gravity="top"
                 android:hint="Откуда едем?" />
 
         <EditText
+                android:layout_marginStart="3dp"
                 android:drawableStart="@drawable/ic_b_point"
                 android:drawablePadding="12dp"
+                android:layout_alignParentBottom="true"
                 android:textColor="@color/black"
                 android:id="@+id/B_point"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:hint="Куда едем?"
-                android:layout_gravity="bottom" />
-    </FrameLayout>
+                android:hint="Куда едем?" />
+    </RelativeLayout>
 
     <TextView
             android:textSize="16sp"

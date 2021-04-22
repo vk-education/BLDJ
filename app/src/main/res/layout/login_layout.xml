@@ -30,7 +30,9 @@
 
     <Button
             android:id="@+id/go_bttn"
-            android:text="           Далее           "
+            android:text="Далее"
+            android:paddingStart="90dp"
+            android:paddingEnd="90dp"
             android:padding="10dp"
             android:textSize="24sp"
             android:layout_marginBottom="100dp"
