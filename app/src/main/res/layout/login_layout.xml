@@ -33,6 +33,7 @@
             android:text="Далее"
             android:paddingStart="90dp"
             android:paddingEnd="90dp"
+            android:textAllCaps="false"
             android:padding="10dp"
             android:textSize="24sp"
             android:layout_marginBottom="100dp"
