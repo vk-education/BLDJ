@@ -160,11 +160,5 @@
             android:background="@drawable/roundcorner"
             android:layout_marginTop="22dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/guideline"
-            app:layout_constraintGuide_begin="205dp"
-            android:orientation="vertical" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/profile_image"
             android:text="Настройки"
             android:gravity="start|center"
-            android:drawablePadding="13.5dp"
+            android:drawablePadding="13dp"
             android:textColor="#595858"
             android:textAllCaps="false"
             android:layout_marginTop="22dp"
