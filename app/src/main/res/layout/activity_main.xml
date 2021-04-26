@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
             android:id="@+id/fl_wrapper"
-            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_width="match_parent"
             app:layout_constraintBottom_toTopOf="@id/nav_bar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="?android:attr/windowBackground"
             android:backgroundTint="#37d134"
+            android:id="@+id/nav_bar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             app:itemBackground="@color/white"
             app:itemIconTint="@drawable/bottom_nav_items"
             app:itemTextColor="@drawable/bottom_nav_items"

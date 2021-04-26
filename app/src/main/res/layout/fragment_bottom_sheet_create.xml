@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@drawable/components_bottom_sheet"
+        android:id="@+id/create_bottom_sheet"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        tools:context=".BottomSheetCreateFragment"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+            android:background="@drawable/ic_baseline_horizontal_rule_24"
+            android:layout_gravity="center|top"
+            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:scaleType="centerCrop" />
+
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:layout_width="wrap_content"
+            android:minLines="2"
+            android:text="Объявление опубликовано!"
+            android:textAlignment="center"
+            android:textColor="#489973"
+            android:textSize="36sp" />
+
+    <ImageView
+            android:background="@drawable/driver"
+            android:layout_gravity="center|bottom"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+
+</LinearLayout>
