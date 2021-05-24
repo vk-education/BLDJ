@@ -2,6 +2,7 @@ package com.bldj.project
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -27,9 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
+        Log.i("Authmail",auth?.currentUser?.email.toString())
         if (auth?.currentUser != null) {
             if (savedInstanceState == null)
-                moveToFragment(LoginFragment())
+                moveToFragment(AdsFragment())
         } else {
             if (savedInstanceState == null)
                 moveToFragment(LoginFragment())
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             val frag = when (it.itemId) {
                 R.id.home -> AdsFragment()
                 R.id.add -> CreateFragment()
+                R.id.user -> ProfileFragment()
                 else -> throw InvalidParameterException()
             }
             moveToFragment(frag)

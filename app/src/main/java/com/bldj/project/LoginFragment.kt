@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import data.User
+import kotlin.math.log
 
 class LoginFragment : Fragment() {
 
@@ -36,23 +37,24 @@ class LoginFragment : Fragment() {
         inflaterThis =
             LayoutInflater.from(this.context).inflate(R.layout.login_layout, container, false)
 
-        val login: String = inflaterThis.findViewById<EditText>(R.id.login_edit).text.toString()
-        inflaterThis.findViewById<Button>(R.id.go_bttn).setOnClickListener { onLogin(login) }
+        val loginET: EditText = inflaterThis.findViewById(R.id.login_edit)
+        inflaterThis.findViewById<Button>(R.id.go_bttn).setOnClickListener { onLogin(loginET) }
         // Inflate the layout for this fragment
         return inflaterThis
     }
 
-    private fun onLogin(login: String) {
+    private fun onLogin(loginET: EditText) {
         val password = "parol123"
-
-        auth?.createUserWithEmailAndPassword("noviyya@mail.ru", password)
+        val login = loginET.text.toString()
+        Log.i("LOGINPAROL", login)
+        auth?.createUserWithEmailAndPassword(login, password)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("auth", "createUserWithEmail:success")
                     var user = User(login, password)
                     parentFragmentManager.beginTransaction()
-                        .replace(R.id.accesscode_lay, AccessCodeFragment())
+                        .replace((view?.parent as View).id, AccessCodeFragment(), "LoginSuccess")
                         .commit()
 
                 } else {
