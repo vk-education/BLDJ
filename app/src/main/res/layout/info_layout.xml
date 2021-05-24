@@ -86,26 +86,15 @@
 
     <TextView
             android:gravity="center_horizontal"
-            android:id="@+id/nikita"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:layout_width="match_parent"
-            android:text="Никита Федоров"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_developers" />
-
-    <TextView
-            android:gravity="center_horizontal"
             android:id="@+id/andrey"
             android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
             android:layout_width="match_parent"
             android:text="Андрей Петропавловский"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nikita" />
+            app:layout_constraintTop_toBottomOf="@id/text_developers" />
 
     <TextView
             android:gravity="center_horizontal"
