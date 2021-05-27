@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import data.IBackButton
 import java.security.InvalidParameterException
 import java.time.Duration
 
@@ -22,13 +23,15 @@ class MainActivity : AppCompatActivity() {
     private var database: FirebaseDatabase? = null
     private var usersDbRef: DatabaseReference? = null
 
+    private var oldId = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         auth = Firebase.auth
 
-        Log.i("Authmail",auth?.currentUser?.email.toString())
+        Log.i("Authmail", auth?.currentUser?.email.toString())
         if (auth?.currentUser != null) {
             if (savedInstanceState == null)
                 moveToFragment(AdsFragment())
@@ -49,7 +52,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.user -> ProfileFragment()
                 else -> throw InvalidParameterException()
             }
-            moveToFragment(frag)
+            if (oldId != -1 || oldId != it.itemId) {
+                moveToFragment(frag)
+                oldId = it.itemId
+            }
             true
         }
     }
@@ -63,5 +69,13 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    override fun onBackPressed() {
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.activity_main_id)
+        (fragment as? IBackButton)?.onBackPressed()?.not()?.let {
+            super.onBackPressed()
+        }
+
+
+    }
 
 }
