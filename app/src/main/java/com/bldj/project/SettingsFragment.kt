@@ -8,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AppCompatDelegate
+import data.IBackButton
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : Fragment(), IBackButton {
     lateinit var inflaterThis: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,5 +54,8 @@ class SettingsFragment : Fragment() {
             }
         })
         return inflaterThis
+    }
+    override fun onBackPressed(): Boolean {
+        TODO("Not yet implemented")
     }
 }

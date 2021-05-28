@@ -49,10 +49,9 @@ class AccessCodeFragment : Fragment() {
                     Toast.makeText(context, "Failed to send email ${user.email}", Toast.LENGTH_LONG)
                         .show()
                 }
-
 //                if (user.isEmailVerified) {
                     parentFragmentManager.beginTransaction()
-                        .replace((view?.parent as View).id, AdsFragment(), "LoginSuccess")
+                        .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
                         .commit()
 //                }
             }
