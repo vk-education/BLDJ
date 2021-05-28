@@ -13,7 +13,7 @@
             android:layout_marginTop="18dp"
             android:layout_width="wrap_content"
             android:text="Объявление №15"
-            android:textColor="@color/black"
+            android:textColor="@color/text_default"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +26,7 @@
             android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:text="Цена за машину 560 Р"
+            android:textColor="@color/text_greyBlack"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ad_name" />
@@ -37,6 +38,7 @@
             android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:text="Свободных мест 3"
+            android:textColor="@color/text_greyBlack"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ad_cost" />
@@ -49,6 +51,7 @@
             android:layout_width="wrap_content"
             android:text="Сегодня в 12:17"
             android:textSize="14sp"
+            android:textColor="@color/text_greyBlack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

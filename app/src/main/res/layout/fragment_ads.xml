@@ -13,7 +13,7 @@
             android:layout_marginTop="23dp"
             android:layout_width="wrap_content"
             android:text="Доступные объявления"
-            android:textColor="@color/black"
+            android:textColor="@color/text_default"
             android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/g_left"

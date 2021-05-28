@@ -16,13 +16,14 @@
             android:layout_marginTop="3dp"
             android:layout_width="match_parent"
             android:text="Справка"
+            android:textColor="@color/text_default"
             android:textAllCaps="false"
             android:textSize="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     <View
-            android:background="#b6b6b6"
+            android:background="@color/text_default"
             android:id="@+id/line_back"
             android:layout_height="1dp"
             android:layout_marginEnd="24dp"
@@ -39,6 +40,7 @@
             android:layout_width="match_parent"
             android:text="Версия 1.2.3"
             android:textSize="11sp"
+            android:textColor="@color/text_greyBlack"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/line_back" />
 
@@ -48,6 +50,7 @@
             android:layout_marginStart="42dp"
             android:layout_marginTop="31dp"
             android:layout_width="wrap_content"
+
             android:src="@drawable/logo_icon"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/version" />
@@ -69,6 +72,7 @@
             android:layout_marginTop="2dp"
             android:layout_width="wrap_content"
             android:text="Найти попутчиков"
+            android:textColor="@color/text_greyBlack"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@id/logo_icon"
             app:layout_constraintTop_toBottomOf="@id/bldj" />
@@ -81,6 +85,7 @@
             android:layout_width="match_parent"
             android:text="Команда разработчиков:"
             android:textSize="14sp"
+            android:textColor="@color/text_greyBlack"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/find_travellers" />
 
@@ -91,7 +96,7 @@
             android:layout_marginTop="11dp"
             android:layout_width="match_parent"
             android:text="Андрей Петропавловский"
-            android:textColor="@color/black"
+            android:textColor="@color/text_default"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_developers" />
@@ -102,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Даниил Ефимов"
-            android:textColor="@color/black"
+            android:textColor="@color/text_default"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/andrey" />
@@ -113,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Эдуард Ни"
-            android:textColor="@color/black"
+            android:textColor="@color/text_default"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/daniil" />

@@ -13,7 +13,7 @@
             android:textStyle="bold"
            android:layout_marginTop="18dp"
             android:layout_marginStart="8dp"
-            android:textColor="@color/black"
+            android:textColor="@color/text_default"
 
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="32sp" />
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:textSize="23sp"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/text_default"
             android:text="Даниил Можайский"
             app:layout_constraintLeft_toRightOf="@id/profile_image"
             app:layout_constraintTop_toTopOf="@id/profile_image"
@@ -71,7 +71,7 @@
             android:text="Настройки"
             android:gravity="start|center"
             android:drawablePadding="13dp"
-            android:textColor="#595858"
+            android:textColor="@color/text_greyBlack"
             android:textAllCaps="false"
             android:layout_marginTop="22dp"
             android:textStyle="normal"
@@ -88,7 +88,7 @@
             android:layout_marginStart="22dp"
             android:layout_marginEnd="24dp"
             android:layout_height="1dp"
-            android:background="@color/black"/>
+            android:background="@color/text_default"/>
     <Button
             android:id="@+id/info"
             android:layout_width="match_parent"
@@ -98,7 +98,7 @@
             android:text="Справка"
             android:gravity="start|center"
             android:drawablePadding="12dp"
-            android:textColor="#595858"
+            android:textColor="@color/text_greyBlack"
             android:textAllCaps="false"
             android:textStyle="normal"
             android:layout_marginStart="22dp"
@@ -115,7 +115,7 @@
             android:layout_marginStart="22dp"
             android:layout_marginEnd="24dp"
             android:layout_height="1dp"
-            android:background="@color/black"/>
+            android:background="@color/text_default"/>
     <Button
             android:id="@+id/exit"
             android:layout_width="match_parent"
@@ -125,12 +125,13 @@
             android:text="Выход"
             android:gravity="start|center"
             android:drawablePadding="18dp"
-            android:textColor="#9C4A4A"
+            android:textColor="@color/exit_color"
             android:textAllCaps="false"
             android:layout_marginStart="22dp"
             android:background="@android:color/transparent"
             android:layout_marginTop="0dp"
             android:textSize="18sp"
+            
             android:drawableLeft="@drawable/ic_exit"/>
     <View
             android:id="@+id/line_exit"
@@ -141,7 +142,7 @@
             android:layout_marginStart="22dp"
             android:layout_marginEnd="24dp"
             android:layout_height="1dp"
-            android:background="#9C4A4A"/>
+            android:background="@color/exit_color"/>
     
 
 
