@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/historyLayout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:context=".HistoryFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@drawable/components_gray"
+                android:id="@+id/layoutHeader"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:padding="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                    android:id="@+id/currentText"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:text="Текущее"
+                    android:textSize="@dimen/_18ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/historyText"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="История"
+                    android:textSize="@dimen/_18sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/currentText"
+                    app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+                android:id="@+id/back"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="обратно"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--                android:layout_height="0dp"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/layoutHeader" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

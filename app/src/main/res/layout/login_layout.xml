@@ -1,53 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:background="@color/app_color"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-            android:layout_height="wrap_content"
-            android:layout_marginTop="62dp"
-            android:layout_width="wrap_content"
-            android:src="@drawable/logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <EditText
-            android:alpha="0.55"
-            android:backgroundTint="#000000"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/mail"
-            android:hint="@string/hse"
-            android:id="@+id/login_edit"
-            android:inputType="textEmailAddress"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            android:layout_width="wrap_content"
-            android:maxLines="1"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            app:layout_constraintBottom_toTopOf="@id/go_bttn"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    </data>
 
-    <Button
-            android:background="@drawable/button_corners"
-            android:id="@+id/go_bttn"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:paddingEnd="90dp"
-            android:paddingStart="90dp"
-            android:shadowColor="@color/black"
-            android:text="Далее"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/app_color"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+        <ImageView
+                android:layout_height="wrap_content"
+                android:layout_marginTop="62dp"
+                android:layout_width="wrap_content"
+                android:src="@drawable/logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+                android:alpha="0.55"
+                android:backgroundTint="#000000"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/mail"
+                android:hint="@string/hse"
+                android:id="@+id/login_edit"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                app:layout_constraintBottom_toTopOf="@id/password_edit"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+                android:alpha="0.55"
+                android:backgroundTint="#000000"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/mail"
+                android:hint="Введите пароль"
+                android:id="@+id/password_edit"
+                android:inputType="textPassword"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                app:layout_constraintBottom_toTopOf="@id/go_bttn"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+                android:background="@drawable/button_corners"
+                android:id="@+id/go_bttn"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:paddingEnd="90dp"
+                android:paddingStart="90dp"
+                android:shadowColor="@color/black"
+                android:text="Далее"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

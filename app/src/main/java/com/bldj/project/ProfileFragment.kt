@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.add
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
 
@@ -24,6 +25,7 @@ class ProfileFragment : Fragment() {
 
         val settings: Button = inflaterThis.findViewById(R.id.settings)
         val info: Button = inflaterThis.findViewById(R.id.info)
+        val exit:Button = inflaterThis.findViewById(R.id.exit)
 
         settings.setOnClickListener {
             parentFragmentManager.beginTransaction()
@@ -35,6 +37,13 @@ class ProfileFragment : Fragment() {
         info.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .add((inflaterThis.parent as View).id, InfoFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        exit.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            parentFragmentManager.beginTransaction()
+                .add((inflaterThis.parent as View).id, LoginFragment())
                 .addToBackStack(null)
                 .commit()
         }
