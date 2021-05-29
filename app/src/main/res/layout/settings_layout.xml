@@ -116,6 +116,7 @@
     <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textOff="adsasd"
             app:layout_constraintLeft_toRightOf="@id/night_theme"
             app:layout_constraintTop_toBottomOf="@id/line_notif"
             android:layout_marginTop="9dp"
