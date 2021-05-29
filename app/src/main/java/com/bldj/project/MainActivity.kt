@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
+
+
         auth = Firebase.auth
         if (auth?.currentUser != null) {
             database = FirebaseDatabase.getInstance()
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             usersDbRef?.addChildEventListener(usersChildEventListener as ChildEventListener)
             moveToFragment(TripsFragment())
         } else {
+
             moveToFragment(LoginFragment())
         }
 //        Log.i("Authmail", auth?.currentUser?.email.toString())

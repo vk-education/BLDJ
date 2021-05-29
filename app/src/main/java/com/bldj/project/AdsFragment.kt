@@ -81,14 +81,13 @@ class AdsFragment : Fragment() {
 //        }
 
 
-
     }
 
     private fun updateAds() {
         usersChildEventListener = object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val ad: Advert = snapshot.getValue(Advert::class.java)!!
-                if(!listAds.contains(ad)){
+                if (!listAds.contains(ad)) {
                     listAds.add(ad)
                 }
 
@@ -125,7 +124,7 @@ class AdsFragment : Fragment() {
             invalidateAll()
         }
         adsFragmentBinding.rvMovies.setHasFixedSize(true)
-        adsFragmentBinding.rvMovies.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+        adsFragmentBinding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!adsFragmentBinding.rvMovies.canScrollVertically(1)) {

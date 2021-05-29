@@ -31,7 +31,7 @@ class CreateFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_create, container, false)
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("USER")
+        databaseReference = FirebaseDatabase.getInstance().getReference("ADVERTS")
 
         val publishBtn = view.findViewById<Button>(R.id.create_ad)
         fromET = view.findViewById(R.id.A_point)
@@ -42,7 +42,7 @@ class CreateFragment : Fragment() {
 
         publishBtn?.setOnClickListener {
             val bottomSheet = BottomSheetCreateFragment()
-            bottomSheet.show(requireFragmentManager(), "TAG")
+            bottomSheet.show(parentFragmentManager, "TAG")
             val adv = Advert(
                 fromET.text.toString(),
                 toET.text.toString(),
@@ -50,8 +50,7 @@ class CreateFragment : Fragment() {
                 placesET.text.toString().toInt(),
                 notesET.text.toString()
             )
-
-            databaseReference.push().setValue(adv)
+            databaseReference.child(adv.from).setValue(adv)
         }
 
         // Inflate the layout for this fragment
