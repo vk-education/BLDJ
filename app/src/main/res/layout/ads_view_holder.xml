@@ -1,87 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/ads_holder"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:layout_width="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-            android:id="@+id/ad_name"
+    <data>
+        <variable
+                name="ad"
+                type="data.Advert" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ads_holder"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="18dp"
-            android:layout_width="wrap_content"
-            android:text="Объявление №15"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginBottom="14dp"
+            android:layout_width="match_parent">
 
-    <TextView
-            android:id="@+id/ad_cost"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_width="wrap_content"
-            android:text="Цена за машину 560 Р"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ad_name" />
+        <TextView
+                android:id="@+id/ad_name"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="18dp"
+                android:layout_width="wrap_content"
+                android:text="@{String.format(@string/from_to,ad.from, ad.to)}"
+                android:textColor="@color/text_default"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-            android:id="@+id/ad_place"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:text="Свободных мест 3"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ad_cost" />
+        <TextView
+                android:id="@+id/ad_cost"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:text="@{String.format(@string/value_for, ad.price)}"
+                android:textColor="@color/text_greyBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ad_name" />
 
-    <TextView
-            android:id="@+id/ad_time"
-            android:layout_height="wrap_content"
-            android:layout_margin="18dp"
-            android:layout_marginStart="12dp"
-            android:layout_width="wrap_content"
-            android:text="Сегодня в 12:17"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+                android:id="@+id/ad_place"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:text="@{String.format(@string/empty_places, ad.places)}"
+                android:textColor="@color/text_greyBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ad_cost" />
 
-
-    <ImageButton
-            android:background="@drawable/components_gray"
-            android:id="@+id/ad_info_btn"
-            android:layout_height="50dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_width="150dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/info"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ad_betraveler_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ad_place" />
-
-    <ImageButton
-            android:background="@drawable/components_gray"
-            android:drawableLeft="@drawable/add_user"
-            android:id="@+id/ad_betraveler_btn"
-            android:layout_height="50dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="24dp"
-            android:layout_width="150dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/add_user"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ad_info_btn"
-            app:layout_constraintTop_toBottomOf="@id/ad_place" />
+        <TextView
+                android:id="@+id/ad_time"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                android:layout_marginStart="12dp"
+                android:layout_width="wrap_content"
+                android:text="Сегодня в 12:17"
+                android:textSize="14sp"
+                android:textColor="@color/text_greyBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+                android:background="@drawable/components_gray"
+                android:id="@+id/ad_info_btn"
+                android:layout_height="50dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_width="150dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ad_betraveler_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ad_place" />
+
+        <ImageButton
+                android:background="@drawable/components_gray"
+                android:drawableLeft="@drawable/add_user"
+                android:id="@+id/ad_betraveler_btn"
+                android:layout_height="50dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="24dp"
+                android:layout_width="150dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/add_user"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ad_info_btn"
+                app:layout_constraintTop_toBottomOf="@id/ad_place" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

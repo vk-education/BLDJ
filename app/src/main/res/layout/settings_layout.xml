@@ -1,175 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@color/app_color"
-        android:layout_width="match_parent" android:layout_height="match_parent">
-    <Button
-            android:id="@+id/back_button"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/app_color"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:drawableLeft="@drawable/ic_arrow"
-            android:text="Настройки"
-            android:textAllCaps="false"
-            android:textSize="24dp"
-            android:gravity="start|center"
-            android:drawablePadding="22dp"
-            android:background="@android:color/transparent"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="3dp" />
-    <View
-            android:id="@+id/line_back"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="24dp"
-            android:layout_height="1dp"
-            android:background="#b6b6b6" />
+            android:layout_height="match_parent">
 
-    <EditText
-            android:id="@+id/enter_name"
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line_back"
-            android:background="@drawable/components_gray"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="51dp"
-            android:textSize="16dp"
-            android:hint="Введите имя"
-            android:gravity="center_horizontal|center_vertical"
+        <Button
+                android:id="@+id/back_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:drawableLeft="@drawable/ic_arrow"
+                android:text="Настройки"
+                android:textColor="@color/text_default"
+                android:textAllCaps="false"
+                android:textSize="24dp"
+                android:gravity="start|center"
+                android:drawablePadding="22dp"
+                android:background="@android:color/transparent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="3dp" />
 
-            />
-    <EditText
-            android:id="@+id/enter_lastname"
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enter_name"
-            android:background="@drawable/components_gray"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="21dp"
-            android:textSize="16dp"
-            android:hint="Введите фамилию"
-            android:gravity="center_horizontal|center_vertical"
+        <View
+                android:id="@+id/line_back"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="24dp"
+                android:layout_height="1dp"
+                android:background="@color/text_greyBlack" />
 
-            />
+        <EditText
+                android:id="@+id/enter_name"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_back"
+                android:background="@drawable/components_gray"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="51dp"
+                android:textSize="16dp"
+                android:textColorHint="#8B8B8B"
+                android:textColor="#8B8B8B"
+                android:hint="Введите имя"
+                android:gravity="center_horizontal|center_vertical"
 
-    <Button
-            android:id="@+id/notification1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enter_lastname"
-            android:text="Уведомления"
-            android:gravity="start|center"
-            android:textColor="#595858"
-            android:layout_marginTop="22dp"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:layout_marginStart="22dp"
-            android:background="@android:color/transparent"
-            android:textSize="14sp"
-            android:layout_marginEnd="22dp"
-            android:drawableRight="@drawable/ic_ring_green"
-            />
-    <View
-            android:id="@+id/line_notif"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/notification1"
+                />
 
-            android:layout_width="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginEnd="11dp"
-            android:layout_height="1dp"
-            android:background="@color/black"/>
-    <TextView
-            android:id="@+id/night_theme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line_notif"
-            android:text="Ночная тема"
-            android:gravity="start|center"
-            android:textColor="#595858"
-            android:layout_marginTop="13dp"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:layout_marginStart="22dp"
+        <EditText
+                android:id="@+id/enter_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_name"
+                android:background="@drawable/components_gray"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="21dp"
+                android:textColor="#8B8B8B"
+                android:textSize="16dp"
+                android:textColorHint="#8B8B8B"
+                android:hint="Введите фамилию"
+                android:gravity="center_horizontal|center_vertical"
 
-            android:background="@android:color/transparent"
-            android:textSize="14sp"
-            android:layout_marginEnd="50dp"
-            />
+                />
 
-    <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/night_theme"
-            app:layout_constraintTop_toBottomOf="@id/line_notif"
-            android:layout_marginTop="9dp"
-            />
-    <View
-            android:id="@+id/line_theme"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/night_theme"
+        <Button
+                android:id="@+id/notification1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_lastname"
+                android:text="Уведомления"
+                android:gravity="start|center"
+                android:textColor="@color/text_greyBlack"
+                android:layout_marginTop="22dp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:layout_marginStart="22dp"
+                android:background="@android:color/transparent"
+                android:textSize="14sp"
+                android:layout_marginEnd="22dp"
+                android:drawableRight="@drawable/ic_ring_green" />
 
-            android:layout_width="match_parent"
-            android:layout_marginTop="14dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginEnd="11dp"
-            android:layout_height="1dp"
-            android:background="@color/black"/>
+        <View
+                android:id="@+id/line_notif"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notification1"
 
-    <TextView
-            android:id="@+id/language_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line_theme"
-            android:text="Выбор языка"
-            android:gravity="start|center"
-            android:textColor="#595858"
-            android:layout_marginTop="13dp"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:layout_marginStart="22dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginEnd="11dp"
+                android:layout_height="1dp"
+                android:background="@color/text_default" />
 
-            android:background="@android:color/transparent"
-            android:textSize="14sp"
-            android:layout_marginEnd="100dp"
-            />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/language_text"
-            app:layout_constraintTop_toBottomOf="@id/line_theme"
-            android:text="Русский"
-            android:textColor="@color/black"
-            android:layout_marginTop="13dp"
-            android:drawableLeft="@drawable/flag"
-            android:drawablePadding="4dp"
-            />
+        <TextView
+                android:id="@+id/night_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_notif"
+                android:text="Ночная тема"
+                android:gravity="start|center"
+                android:textColor="@color/text_greyBlack"
+                android:layout_marginTop="13dp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:layout_marginStart="22dp"
 
+                android:background="@android:color/transparent"
+                android:textSize="14sp"
+                android:layout_marginEnd="50dp" />
 
-    <View
-            android:id="@+id/line_language"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/language_text"
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/night_theme"
+                app:layout_constraintTop_toBottomOf="@id/line_notif"
+                android:layout_marginTop="9dp" />
 
-            android:layout_width="match_parent"
-            android:layout_marginTop="14dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginEnd="11dp"
-            android:layout_height="1dp"
-            android:background="@color/black"/>
+        <View
+                android:id="@+id/line_theme"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/night_theme"
+
+                android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginEnd="11dp"
+                android:layout_height="1dp"
+                android:background="@color/text_default" />
+
+        <TextView
+                android:id="@+id/language_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_theme"
+                android:text="Выбор языка"
+                android:gravity="start|center"
+                android:textColor="@color/text_greyBlack"
+                android:layout_marginTop="13dp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:layout_marginStart="22dp"
+
+                android:background="@android:color/transparent"
+                android:textSize="14sp"
+                android:layout_marginEnd="100dp" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/language_text"
+                app:layout_constraintTop_toBottomOf="@id/line_theme"
+                android:text="Русский"
+                android:textColor="@color/text_default"
+                android:layout_marginTop="13dp"
+                android:drawableLeft="@drawable/flag"
+                android:drawablePadding="4dp" />
 
 
+        <View
+                android:id="@+id/line_language"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/language_text"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginEnd="11dp"
+                android:layout_height="1dp"
+                android:background="@color/text_default" />
+
+        <Button
+                android:id="@+id/switch_btn"
+                android:layout_marginTop="30dp"
+                android:text="Enable Dark Mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/language_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

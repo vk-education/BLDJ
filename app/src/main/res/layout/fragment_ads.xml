@@ -1,45 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:background="@color/app_color"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        tools:context=".AdsFragment"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-            android:id="@+id/avail_text"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
-            android:layout_width="wrap_content"
-            android:text="Доступные объявления"
-            android:textColor="@color/black"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/g_left"
-            app:layout_constraintTop_toTopOf="parent" />
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/app_color"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:context=".AdsFragment">
+
+        <TextView
+                android:id="@+id/avail_text"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:layout_width="wrap_content"
+                android:text="Доступные объявления"
+                android:textColor="@color/text_default"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/g_left"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_movies"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_width="0dp"
-            app:layout_constraintEnd_toEndOf="@id/g_right"
-            app:layout_constraintStart_toStartOf="@id/g_left"
-            app:layout_constraintTop_toBottomOf="@id/avail_text" />
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_movies"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="@id/g_right"
+                app:layout_constraintStart_toStartOf="@id/g_left"
+                app:layout_constraintTop_toBottomOf="@id/avail_text"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
 
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/g_left"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="8dp" />
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/g_left"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="8dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/g_right"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="8dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/g_right"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="8dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

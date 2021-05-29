@@ -1,18 +1,16 @@
 package com.bldj.project
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.coroutineScope
 
 class AccessCodeFragment : Fragment() {
 
@@ -49,10 +47,9 @@ class AccessCodeFragment : Fragment() {
                     Toast.makeText(context, "Failed to send email ${user.email}", Toast.LENGTH_LONG)
                         .show()
                 }
-
 //                if (user.isEmailVerified) {
                     parentFragmentManager.beginTransaction()
-                        .replace((view?.parent as View).id, AdsFragment(), "LoginSuccess")
+                        .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
                         .commit()
 //                }
             }
