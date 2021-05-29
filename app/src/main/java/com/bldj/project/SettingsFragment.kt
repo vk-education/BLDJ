@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AppCompatDelegate
+import com.bldj.project.databinding.SettingsLayoutBinding
 import data.IBackButton
 
 class SettingsFragment : Fragment(), IBackButton {
     lateinit var inflaterThis: View
+    private lateinit var settingsLayoutBinding: SettingsLayoutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,39 +24,47 @@ class SettingsFragment : Fragment(), IBackButton {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val appSettingPrefs: SharedPreferences = this.requireActivity()
             .getSharedPreferences("AppSettingPrefs", 0)
         val sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
         val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
-        inflaterThis = inflater.inflate(R.layout.settings_layout, container, false)
+        settingsLayoutBinding = SettingsLayoutBinding.inflate(inflater,container,false)
+        //inflaterThis = inflater.inflate(R.layout.settings_layout, container, false)
 
-        val switch_btn: Button = inflaterThis.findViewById(R.id.switch_btn)
-        if(isNightModeOn){
+        //val switchBtn: Button = inflaterThis.findViewById(R.id.switch_btn)
+
+        if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            switch_btn.text = "Disable Dark Mode"
+            settingsLayoutBinding.switchBtn.text = "Disable Dark Mode"
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            switch_btn.text = "Enable Dark Mode"
+            settingsLayoutBinding.switchBtn.text = "Enable Dark Mode"
         }
 
-        switch_btn.setOnClickListener(View.OnClickListener {
-            if(isNightModeOn){
+        settingsLayoutBinding.switchBtn.setOnClickListener(View.OnClickListener {
+            if (isNightModeOn) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 sharedPrefsEdit.putBoolean("NightMode", false)
                 sharedPrefsEdit.apply()
 
-                switch_btn.text = "Enable Dark Mode"
+                settingsLayoutBinding.switchBtn.text = "Enable Dark Mode"
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 sharedPrefsEdit.putBoolean("NightMode", true)
                 sharedPrefsEdit.apply()
 
-                switch_btn.text = "Disable Dark Mode"
+                settingsLayoutBinding.switchBtn.text = "Disable Dark Mode"
             }
         })
-        return inflaterThis
+        settingsLayoutBinding.backButton.setOnClickListener {
+            if (parentFragmentManager.backStackEntryCount > 0) {
+                parentFragmentManager.popBackStackImmediate();
+            }
+        }
+        //return inflaterThis
+        return settingsLayoutBinding.root
     }
+
     override fun onBackPressed(): Boolean {
         TODO("Not yet implemented")
     }
