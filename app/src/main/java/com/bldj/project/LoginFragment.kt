@@ -49,6 +49,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun onLogin(/*loginET: EditText*/) {
+
         val password = loginLayoutBinding.passwordEdit.text.toString()
         val login = loginLayoutBinding.loginEdit.text.toString()
         // Log.i("LOGINPAROL", login)
