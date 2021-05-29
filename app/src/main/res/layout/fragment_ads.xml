@@ -33,7 +33,9 @@
                 android:layout_width="0dp"
                 app:layout_constraintEnd_toEndOf="@id/g_right"
                 app:layout_constraintStart_toStartOf="@id/g_left"
-                app:layout_constraintTop_toBottomOf="@id/avail_text" />
+                app:layout_constraintTop_toBottomOf="@id/avail_text"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
 
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/g_left"

@@ -42,8 +42,8 @@ class AdsFragment : Fragment() {
 
         //var listView: RecyclerView? = view?.findViewById(R.id.)
         usersDbRef =
-            FirebaseDatabase.getInstance("https://bldj-cabb1-default-rtdb.firebaseio.com/").reference.child(
-                "USER"
+            FirebaseDatabase.getInstance().reference.child(
+                "adverts"
             )
         var user: FirebaseUser? = auth?.currentUser
         adAdapter = AdAdapter(listAds)
@@ -81,19 +81,17 @@ class AdsFragment : Fragment() {
 //        }
 
 
-
     }
 
     private fun updateAds() {
         usersChildEventListener = object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val ad: Advert = snapshot.getValue(Advert::class.java)!!
-                if(!listAds.contains(ad)){
+                if (!listAds.contains(ad)) {
                     listAds.add(ad)
+                    Log.i("ads","dobavil")
                 }
-
             }
-
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
             override fun onChildRemoved(snapshot: DataSnapshot) {}
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -119,13 +117,13 @@ class AdsFragment : Fragment() {
         adsFragmentBinding = FragmentAdsBinding.inflate(
             inflater, container, false
         )
-        val view: View = adsFragmentBinding.getRoot()
+        val view: View = adsFragmentBinding.root
         adsFragmentBinding.apply {
             adsFragmentBinding.rvMovies.adapter = adAdapter
             invalidateAll()
         }
         adsFragmentBinding.rvMovies.setHasFixedSize(true)
-        adsFragmentBinding.rvMovies.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+        adsFragmentBinding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!adsFragmentBinding.rvMovies.canScrollVertically(1)) {
