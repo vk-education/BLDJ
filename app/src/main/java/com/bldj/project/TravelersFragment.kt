@@ -34,6 +34,7 @@ class TravelersFragment : Fragment() {
             usersDbRef = FirebaseDatabase.getInstance().reference
                 .child(ConstantValues.ADVERTS_DB_REFERENCE)
                 .child("${ConstantValues.MY_ADVERT?.from}-${ConstantValues.MY_ADVERT?.to}")
+                .child("users")
         }
     }
 
@@ -50,10 +51,10 @@ class TravelersFragment : Fragment() {
         if (myAd != null) {
             usersValueEventListener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val user = snapshot.getValue(User::class.java)!!
+                    val user = snapshot.value
 
-                        users.add(user)
-                        Log.i("userTAGTtravelers", user.email)
+                        users.addAll(user as Collection<User>)
+                        Log.i("userTAGTtravelers", "TUT")
 
                 }
 
