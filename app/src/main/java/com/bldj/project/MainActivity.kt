@@ -2,19 +2,21 @@ package com.bldj.project
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import data.Advert
 import data.IBackButton
 import java.security.InvalidParameterException
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IBeTraveller {
 
     private var usersDbRef: DatabaseReference? = null
     private var usersChildEventListener: ChildEventListener? = null
@@ -98,8 +100,13 @@ class MainActivity : AppCompatActivity() {
         (fragment as? IBackButton)?.onBackPressed()?.not()?.let {
             super.onBackPressed()
         }
-
-
     }
 
+    override fun onBeTravellerClicked(ad: Advert) {
+        Log.i("onBeTravellerClicked", ad.from)
+        //Checking if user is already a traveler of the advert.
+        if (ad.users.contains(ConstantValues.user)) {
+            Toast.makeText(this, "Вы уже попутчик", Toast.LENGTH_LONG).show()
+        }
+    }
 }

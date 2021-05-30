@@ -1,25 +1,18 @@
 package com.bldj.project
 
-import android.R
-import android.R.attr.data
+import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentAdsBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import data.Advert
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 /**
@@ -32,6 +25,14 @@ class AdsFragment : Fragment() {
     private var usersChildEventListener: ChildEventListener? = null
     private lateinit var adAdapter: AdAdapter
     private lateinit var adsFragmentBinding: FragmentAdsBinding
+    private var listener: IBeTraveller? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is IBeTraveller) {
+            listener = context
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,10 @@ class AdsFragment : Fragment() {
                 "adverts"
             )
         var user: FirebaseUser? = ConstantValues.auth?.currentUser
-        adAdapter = AdAdapter(listAds)
+        val adss: Advert
+        adAdapter = AdAdapter { ad -> listener?.onBeTravellerClicked(ad) }
+        adAdapter.adsProperty = listAds
+
 
         updateAds()
 //        adsFragmentBinding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -128,4 +132,11 @@ class AdsFragment : Fragment() {
         return view
         //return inflater.inflate(R.layout.fragment_ads, container, false)
     }
+}
+
+/**
+ * Interface for adding listener to beTraveller button.
+ */
+interface IBeTraveller {
+    fun onBeTravellerClicked(ad: Advert)
 }
