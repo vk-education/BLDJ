@@ -18,8 +18,6 @@ import kotlin.math.log
 
 class LoginFragment : Fragment() {
 
-    private var auth: FirebaseAuth? = null
-    private var database: FirebaseDatabase? = null
     private var usersDbRef: DatabaseReference? = null
     private lateinit var loginLayoutBinding: LoginLayoutBinding
 
@@ -27,9 +25,9 @@ class LoginFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        usersDbRef = database?.reference?.child("users")
+        ConstantValues.auth = FirebaseAuth.getInstance()
+        ConstantValues.database = FirebaseDatabase.getInstance()
+        usersDbRef = ConstantValues.database?.reference?.child("users")
     }
 
     override fun onCreateView(
@@ -53,12 +51,13 @@ class LoginFragment : Fragment() {
         val password = loginLayoutBinding.passwordEdit.text.toString()
         val login = loginLayoutBinding.loginEdit.text.toString()
         // Log.i("LOGINPAROL", login)
-        auth?.createUserWithEmailAndPassword(login, password)
+        ConstantValues.auth?.createUserWithEmailAndPassword(login, password)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("auth", "createUserWithEmail:success")
                     val user = User(login, password)
+                    ConstantValues.user = user
                     usersDbRef!!.child(login.replace(".", "")).setValue(user)
                     parentFragmentManager.beginTransaction()
                         .replace((view?.parent as View).id, AccessCodeFragment(), "LoginSuccess")

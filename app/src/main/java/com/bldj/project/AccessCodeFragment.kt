@@ -14,15 +14,10 @@ import com.google.firebase.ktx.Firebase
 
 class AccessCodeFragment : Fragment() {
 
-    private var auth: FirebaseAuth? = null
-    private var database: FirebaseDatabase? = null
-    private var usersDbRef: DatabaseReference? = null
     lateinit var inflaterThis: View
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
     }
 
     override fun onCreateView(
@@ -30,7 +25,6 @@ class AccessCodeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         inflaterThis = inflater.inflate(R.layout.accesscode_layout, container, false)
-
         verifyEmail()
 
         // Inflate the layout for this fragment
@@ -38,7 +32,7 @@ class AccessCodeFragment : Fragment() {
     }
 
     private fun verifyEmail() {
-        val user = auth!!.currentUser
+        val user = ConstantValues.auth!!.currentUser
         user!!.sendEmailVerification()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -48,9 +42,9 @@ class AccessCodeFragment : Fragment() {
                         .show()
                 }
 //                if (user.isEmailVerified) {
-                    parentFragmentManager.beginTransaction()
-                        .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
-                        .commit()
+                parentFragmentManager.beginTransaction()
+                    .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
+                    .commit()
 //                }
             }
     }

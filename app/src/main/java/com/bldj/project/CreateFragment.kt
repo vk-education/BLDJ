@@ -16,13 +16,14 @@ import data.Advert
  * Фрагмент окна создания объявления.
  */
 class CreateFragment : Fragment() {
-    private var database: FirebaseDatabase? = null
+
     private var advertsDbRef: DatabaseReference? = null
     private lateinit var fromET: EditText
     private lateinit var toET: EditText
     private lateinit var priceET: EditText
     private lateinit var placesET: EditText
     private lateinit var notesET: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,8 +34,7 @@ class CreateFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_create, container, false)
 
-        database = FirebaseDatabase.getInstance()
-        advertsDbRef = database?.reference?.child("adverts")
+        advertsDbRef = ConstantValues.database?.reference?.child("adverts")
 
         val publishBtn = view.findViewById<Button>(R.id.create_ad)
         fromET = view.findViewById(R.id.A_point)
@@ -42,8 +42,6 @@ class CreateFragment : Fragment() {
         priceET = view.findViewById(R.id.edit_price)
         placesET = view.findViewById(R.id.edit_places)
         notesET = view.findViewById(R.id.create_comments)
-
-
 
         publishBtn?.setOnClickListener {
             val from = fromET.text.toString()
@@ -70,12 +68,13 @@ class CreateFragment : Fragment() {
                     to,
                     price,
                     places,
-                    notes
+                    notes,
+                    arrayListOf(ConstantValues.user)
                 )
-                //advertsDbRef!!.push().setValue(adv)
+
                 advertsDbRef!!.child("$from-$to").setValue(adv)
                 val bottomSheet = BottomSheetCreateFragment()
-                bottomSheet.show(requireFragmentManager(), "TAG")
+                bottomSheet.show(parentFragmentManager, "TAG")
                 parentFragmentManager.beginTransaction()
                     .replace((view?.parent as View).id, AdsFragment())
                     .addToBackStack(null).commit()

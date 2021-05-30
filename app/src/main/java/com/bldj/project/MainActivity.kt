@@ -16,8 +16,6 @@ import java.security.InvalidParameterException
 
 class MainActivity : AppCompatActivity() {
 
-    private var auth: FirebaseAuth? = null
-    private var database: FirebaseDatabase? = null
     private var usersDbRef: DatabaseReference? = null
     private var usersChildEventListener: ChildEventListener? = null
     private var oldId = -1
@@ -37,10 +35,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        auth = Firebase.auth
-        if (auth?.currentUser != null) {
-            database = FirebaseDatabase.getInstance()
-            usersDbRef = database?.reference?.child("users")
+        ConstantValues.auth = Firebase.auth
+        if (ConstantValues.auth?.currentUser != null) {
+            ConstantValues.database = FirebaseDatabase.getInstance()
+            usersDbRef = ConstantValues.database?.reference?.child("users")
             usersChildEventListener = object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {}
 

@@ -27,14 +27,11 @@ import kotlin.collections.ArrayList
  */
 class AdsFragment : Fragment() {
 
-    private var auth: FirebaseAuth? = null
-    private var database: FirebaseDatabase? = null
     private var usersDbRef: DatabaseReference? = null
     private lateinit var listAds: ArrayList<Advert>
     private var usersChildEventListener: ChildEventListener? = null
     private lateinit var adAdapter: AdAdapter
     private lateinit var adsFragmentBinding: FragmentAdsBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +42,7 @@ class AdsFragment : Fragment() {
             FirebaseDatabase.getInstance().reference.child(
                 "adverts"
             )
-        var user: FirebaseUser? = auth?.currentUser
+        var user: FirebaseUser? = ConstantValues.auth?.currentUser
         adAdapter = AdAdapter(listAds)
 
         updateAds()
@@ -65,11 +62,6 @@ class AdsFragment : Fragment() {
         if (listAds.isEmpty()) {
             updateAds()
         }
-        listAds.add(
-            Advert(
-                "ads", "sdad", 3, 3, "sdas"
-            )
-        )
 //        Log.i("Eduard", listAds.size.toString())
         //var listView: RecyclerView? = view?.findViewById(R.id.)
 //        usersDbRef = FirebaseDatabase.getInstance().reference.child("USER")
@@ -89,9 +81,10 @@ class AdsFragment : Fragment() {
                 val ad: Advert = snapshot.getValue(Advert::class.java)!!
                 if (!listAds.contains(ad)) {
                     listAds.add(ad)
-                    Log.i("ads","dobavil")
+                    Log.i("ads", "dobavil")
                 }
             }
+
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
             override fun onChildRemoved(snapshot: DataSnapshot) {}
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
