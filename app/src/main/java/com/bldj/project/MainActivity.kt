@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), IBeTraveller {
         ConstantValues.auth = Firebase.auth
         if (ConstantValues.auth?.currentUser != null) {
             ConstantValues.database = FirebaseDatabase.getInstance()
-            usersDbRef = ConstantValues.database?.reference?.child("users")
+            usersDbRef = ConstantValues.database?.reference?.child(ConstantValues.USER_DB_REFERENCE)
             usersChildEventListener = object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {}
 

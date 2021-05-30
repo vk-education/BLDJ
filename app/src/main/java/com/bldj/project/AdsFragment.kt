@@ -41,7 +41,7 @@ class AdsFragment : Fragment() {
         //var listView: RecyclerView? = view?.findViewById(R.id.)
         usersDbRef =
             FirebaseDatabase.getInstance().reference.child(
-                "adverts"
+                ConstantValues.ADVERTS_DB_REFERENCE
             )
 
         adAdapter = AdAdapter { ad -> listener?.onBeTravellerClicked(ad) }

@@ -34,7 +34,8 @@ class CreateFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_create, container, false)
 
-        advertsDbRef = ConstantValues.database?.reference?.child("adverts")
+        advertsDbRef =
+            ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
 
         val publishBtn = view.findViewById<Button>(R.id.create_ad)
         fromET = view.findViewById(R.id.A_point)

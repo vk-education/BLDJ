@@ -17,5 +17,8 @@ class ConstantValues {
 
         //Объект текущего User.
         lateinit var user: User
+
+        const val USER_DB_REFERENCE = "users"
+        const val ADVERTS_DB_REFERENCE = "adverts"
     }
 }
