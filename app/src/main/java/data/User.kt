@@ -5,6 +5,8 @@ data class User(
     var name: String = "Даниил Можайский",
     var group: String = "Бакалавриат группа 205-2019"
 ) {
+    var isTraveller: Boolean = false
+
     override fun equals(other: Any?): Boolean {
         return email.equals((other as User).email)
     }

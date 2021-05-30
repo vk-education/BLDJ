@@ -6,5 +6,5 @@ data class Advert(
     val price: Int = 0,
     val places: Int = 0,
     val notes: String = "",
-    val users: List<User> = arrayListOf()
+    val users: MutableList<User> = arrayListOf()
 )

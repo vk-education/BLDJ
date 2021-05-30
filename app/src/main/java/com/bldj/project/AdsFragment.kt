@@ -43,8 +43,7 @@ class AdsFragment : Fragment() {
             FirebaseDatabase.getInstance().reference.child(
                 "adverts"
             )
-        var user: FirebaseUser? = ConstantValues.auth?.currentUser
-        val adss: Advert
+
         adAdapter = AdAdapter { ad -> listener?.onBeTravellerClicked(ad) }
         adAdapter.adsProperty = listAds
 
@@ -131,6 +130,11 @@ class AdsFragment : Fragment() {
 
         return view
         //return inflater.inflate(R.layout.fragment_ads, container, false)
+    }
+
+    override fun onDetach() {
+        listener = null
+        super.onDetach()
     }
 }
 

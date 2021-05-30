@@ -104,9 +104,14 @@ class MainActivity : AppCompatActivity(), IBeTraveller {
 
     override fun onBeTravellerClicked(ad: Advert) {
         Log.i("onBeTravellerClicked", ad.from)
-        //Checking if user is already a traveler of the advert.
-        if (ad.users.contains(ConstantValues.user)) {
+        //Checking if user is already a traveler of the advert or other advert.
+        if (ad.users.contains(ConstantValues.user) || !ConstantValues.user.isTraveller) {
             Toast.makeText(this, "Вы уже попутчик", Toast.LENGTH_LONG).show()
+        } else {
+            ad.users.add(ConstantValues.user)
+            val advRef = ConstantValues.database?.reference?.child("adverts")
+            advRef?.child("${ad.from}-${ad.to}")?.child("users")?.setValue(ad.users)
+            Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
         }
     }
 }
