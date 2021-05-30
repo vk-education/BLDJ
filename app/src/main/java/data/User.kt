@@ -8,6 +8,6 @@ data class User(
     var isTraveller: Boolean = false
 
     override fun equals(other: Any?): Boolean {
-        return email.equals((other as User).email)
+        return email == (other as User).email
     }
 }
