@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import data.Advert
+import data.ConstantValues
 import data.IBackButton
 import java.security.InvalidParameterException
 
@@ -109,8 +110,10 @@ class MainActivity : AppCompatActivity(), IBeTraveller {
             Toast.makeText(this, "Вы уже попутчик", Toast.LENGTH_LONG).show()
         } else {
             ad.users.add(ConstantValues.user)
-            val advRef = ConstantValues.database?.reference?.child("adverts")
-            advRef?.child("${ad.from}-${ad.to}")?.child("users")?.setValue(ad.users)
+            val advRef =
+                ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
+            advRef?.child("${ad.from}-${ad.to}")?.child(ConstantValues.USER_DB_REFERENCE)
+                ?.setValue(ad.users)
             Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
         }
     }

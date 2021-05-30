@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentAdsBinding
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import data.Advert
+import data.ConstantValues
 
 
 /**

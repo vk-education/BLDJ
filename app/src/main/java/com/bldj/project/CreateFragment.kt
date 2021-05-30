@@ -9,8 +9,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import data.Advert
+import data.ConstantValues
+import java.util.*
 
 /**
  * Фрагмент окна создания объявления.
@@ -64,7 +65,9 @@ class CreateFragment : Fragment() {
             } else if (places < 2) {
                 Toast.makeText(context, "Неправильное количество мест", Toast.LENGTH_LONG).show()
             } else {
+
                 val adv = Advert(
+                    Date(),
                     from,
                     to,
                     price,
@@ -72,6 +75,7 @@ class CreateFragment : Fragment() {
                     notes,
                     arrayListOf(ConstantValues.user)
                 )
+                ConstantValues.MY_ADVERT = adv
 
                 advertsDbRef!!.child("$from-$to").setValue(adv)
                 val bottomSheet = BottomSheetCreateFragment()

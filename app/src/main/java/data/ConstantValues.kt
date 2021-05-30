@@ -1,4 +1,4 @@
-package com.bldj.project
+package data
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -14,6 +14,8 @@ class ConstantValues {
 
         //Объект FirebaseDatabase.
         var database: FirebaseDatabase? = null
+
+        var MY_ADVERT: Advert? = null
 
         //Объект текущего User.
         lateinit var user: User

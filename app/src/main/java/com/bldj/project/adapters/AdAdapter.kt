@@ -7,10 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bldj.project.R
 import com.bldj.project.databinding.AdsViewHolderBinding
 import data.Advert
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AdAdapter(val onBeTravellerClicked: (ad: Advert) -> Unit) :
     RecyclerView.Adapter<AdAdapter.AdViewHolder>() {
 
+    val sdfHours = SimpleDateFormat("HH:mm", Locale.getDefault())
+    val sdfDay = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     private lateinit var ads: List<Advert>
 
     //Property for ads List field.
@@ -42,9 +46,17 @@ class AdAdapter(val onBeTravellerClicked: (ad: Advert) -> Unit) :
         RecyclerView.ViewHolder(adbinding_.root) {
         var adBinding: AdsViewHolderBinding = adbinding_
         fun bindAd(ad: Advert) {
+
             adBinding.ad = ad
             adBinding.executePendingBindings()
             adBinding.adBetravelerBtn.setOnClickListener { onBeTravellerClicked(ad) }
+
+            val currentDate = sdfDay.format(Date())
+            adBinding.adTime.text =
+                if (sdfDay.format(ad.date).equals(currentDate))
+                    "сегодня в ${sdfHours.format(ad.date)}"
+                else
+                    "${sdfDay.format(ad.date)} в ${sdfHours.format(ad.date)}"
         }
     }
 }

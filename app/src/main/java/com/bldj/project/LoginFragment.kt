@@ -11,6 +11,7 @@ import com.bldj.project.databinding.LoginLayoutBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import data.ConstantValues
 import data.User
 
 class LoginFragment : Fragment() {
