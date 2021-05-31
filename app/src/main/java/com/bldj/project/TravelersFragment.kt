@@ -1,11 +1,10 @@
 package com.bldj.project
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bldj.project.adapters.UsersAdapter
 import com.bldj.project.databinding.FragmentTravelersBinding
@@ -17,6 +16,7 @@ import data.User
  * Страница с попутчиками
  */
 class TravelersFragment : Fragment() {
+
     private lateinit var usersDbRef: DatabaseReference
     private lateinit var travelersBinding: FragmentTravelersBinding
     private lateinit var usersAdapter: UsersAdapter

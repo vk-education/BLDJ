@@ -2,7 +2,6 @@ package data
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import data.User
 
 /**
  * Класс констант.

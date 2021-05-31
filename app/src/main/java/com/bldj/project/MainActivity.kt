@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity(), IBeTraveller {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
-
-
         ConstantValues.auth = Firebase.auth
         if (ConstantValues.auth?.currentUser != null) {
             ConstantValues.database = FirebaseDatabase.getInstance()

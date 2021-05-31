@@ -14,8 +14,6 @@ import com.bldj.project.databinding.FragmentAdsBinding
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
-import data.User
-
 
 /**
  * Фрагмент для окна объявлений.
@@ -40,7 +38,7 @@ class AdsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         adsFragmentBinding = FragmentAdsBinding.inflate(inflater, container, false)
         return adsFragmentBinding.root
