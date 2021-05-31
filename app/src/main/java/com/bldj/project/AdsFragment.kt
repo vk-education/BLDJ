@@ -54,29 +54,6 @@ class AdsFragment : Fragment() {
             FirebaseDatabase.getInstance().reference.child(
                 ConstantValues.ADVERTS_DB_REFERENCE
             )
-
-//        adsFragmentBinding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                if (!adsFragmentBinding.rvMovies.canScrollVertically(1)) {
-//                    updateAds()
-//                }
-//            }
-//        })
-
-        //here data must be an instance of the class MarsDataProvider
-        //here data must be an instance of the class MarsDataProvider
-        //adsFragmentBinding.setMarsdata(data)
-
-//        Log.i("Eduard", listAds.size.toString())
-        //var listView: RecyclerView? = view?.findViewById(R.id.)
-//        usersDbRef = FirebaseDatabase.getInstance().reference.child("USER")
-//        var user: FirebaseUser? = auth?.currentUser
-//        adAdapter = AdAdapter(listAds)
-//        adsFragmentBinding.apply {
-//            adsFragmentBinding.rvMovies.adapter = adAdapter
-//            invalidateAll()
-//        }
     }
 
 
@@ -101,7 +78,7 @@ class AdsFragment : Fragment() {
                 }
             }
         })
-        updateAds()
+//        updateAds()
     }
 
     private fun updateAds() {
