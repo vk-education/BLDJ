@@ -4,6 +4,7 @@
     <color name="text_default">#FFFFFF</color>
     <color name="text_greyBlack">#FFFFFF</color>
     <color name="exit_color">#CC4D4D</color>
+    <color name="bottom_info_color">#616161</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
