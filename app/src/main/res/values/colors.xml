@@ -3,6 +3,10 @@
     <color name="app_color">#F3F3F3</color>
     <color name="text_default">#000000</color>
     <color name="text_greyBlack">#595858</color>
+    <color name="ads_background">#FFFFFF</color>
+    <color name="nav_bar">#FFFFFF</color>
+    <color name="nav_selected">#FF6767</color>
+    <color name="nav_not_selected">#000000</color>
     <color name="exit_color">#9C4A4A</color>
     <color name="bottom_info_color">#F1EBEB</color>
     <color name="purple_200">#FFBB86FC</color>

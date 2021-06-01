@@ -21,7 +21,7 @@
             android:id="@+id/nav_bar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            app:itemBackground="@color/white"
+            app:itemBackground="@color/nav_bar"
             app:itemIconTint="@drawable/bottom_nav_items"
             app:itemTextColor="@drawable/bottom_nav_items"
             app:labelVisibilityMode="unlabeled"
