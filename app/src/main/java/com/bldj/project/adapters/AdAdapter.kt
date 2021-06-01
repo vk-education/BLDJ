@@ -24,6 +24,15 @@ class AdAdapter(val onBeTravellerClicked: (ad: Advert) -> Unit) :
             ads = value
         }
 
+    private lateinit var getInfoFunc: (ad: Advert) -> Unit
+
+    var getInfoFuncProperty: (ad: Advert) -> Unit
+        get() = getInfoFunc
+        set(value) {
+            getInfoFunc = value
+        }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdViewHolder {
         if (layoutInflater == null)
             layoutInflater = LayoutInflater.from(parent.context)
@@ -50,6 +59,8 @@ class AdAdapter(val onBeTravellerClicked: (ad: Advert) -> Unit) :
             adBinding.ad = ad
             adBinding.executePendingBindings()
             adBinding.adBetravelerBtn.setOnClickListener { onBeTravellerClicked(ad) }
+
+            adBinding.adInfoBtn.setOnClickListener { getInfoFunc(ad) }
 
             val currentDate = sdfDay.format(Date())
             adBinding.adTime.text =

@@ -3,6 +3,7 @@ package com.bldj.project
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,7 +18,7 @@ import data.ConstantValues
 import data.IBackButton
 import java.security.InvalidParameterException
 
-class MainActivity : AppCompatActivity(), IBeTraveller {
+class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
 
     private var usersDbRef: DatabaseReference? = null
     private var usersChildEventListener: ChildEventListener? = null
@@ -114,5 +115,10 @@ class MainActivity : AppCompatActivity(), IBeTraveller {
                 ?.setValue(ad.users)
             Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onGetAdvertInfoClicked(ad: Advert) {
+        val bottomSheet = BottomSheetInfoAds.newInstance(ad)
+        bottomSheet.show(supportFragmentManager, "TAG")
     }
 }

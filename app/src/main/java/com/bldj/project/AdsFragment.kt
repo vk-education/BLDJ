@@ -25,12 +25,16 @@ class AdsFragment : Fragment() {
     private var usersChildEventListener: ChildEventListener? = null
     private lateinit var adAdapter: AdAdapter
     private lateinit var adsFragmentBinding: FragmentAdsBinding
-    private var listener: IBeTraveller? = null
+    private var beTravelerListener: IBeTraveller? = null
+    private var getInfoListener: IGetAdvertInfo? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is IBeTraveller) {
-            listener = context
+            beTravelerListener = context
+        }
+        if(context is IGetAdvertInfo){
+            getInfoListener = context
         }
     }
 
@@ -60,7 +64,8 @@ class AdsFragment : Fragment() {
         adsFragmentBinding.rvMovies.layoutManager = LinearLayoutManager(context)
         adsFragmentBinding.rvMovies.setHasFixedSize(true)
 
-        adAdapter = AdAdapter { ad -> listener?.onBeTravellerClicked(ad) }
+        adAdapter = AdAdapter { ad -> beTravelerListener?.onBeTravellerClicked(ad) }
+        adAdapter.getInfoFuncProperty = { a -> getInfoListener?.onGetAdvertInfoClicked(a)}
         adAdapter.adsProperty = listAds
 
         adsFragmentBinding.apply {
@@ -105,7 +110,8 @@ class AdsFragment : Fragment() {
     }
 
     override fun onDetach() {
-        listener = null
+        beTravelerListener = null
+        getInfoListener = null
         super.onDetach()
     }
 
@@ -129,4 +135,8 @@ class AdsFragment : Fragment() {
  */
 interface IBeTraveller {
     fun onBeTravellerClicked(ad: Advert)
+}
+
+interface IGetAdvertInfo{
+    fun onGetAdvertInfoClicked(ad: Advert)
 }

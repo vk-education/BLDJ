@@ -1,5 +1,6 @@
 package data
 
+import java.io.Serializable
 import java.util.*
 
 data class Advert(
@@ -10,4 +11,4 @@ data class Advert(
     val places: Int = 0,
     val notes: String = "",
     val users: MutableList<User> = arrayListOf()
-)
+) : Serializable
