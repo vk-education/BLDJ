@@ -1,171 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:background="@drawable/components_bottom_sheet_info"
-        android:id="@+id/infoTrip_bottom_sheet"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:context=".BottomSheetInfoTripFragment"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-    <ImageView
-            android:background="@drawable/ic_baseline_horizontal_rule_24"
-            android:layout_gravity="center|top"
-            android:layout_height="wrap_content"
-            android:layout_width="50dp"
-            android:scaleType="centerCrop"
-            />
-    <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="193dp"
-            android:text="Сегодня в 12:17"
-            android:textColor="@color/text_default"
-            android:textSize="16dp"
-            android:layout_marginStart="15dp"
-            android:textStyle="bold"
-            />
-    <LinearLayout
-            android:layout_marginStart="10dp"
-            android:id="@+id/frame_way"
-            android:layout_height="100dp"
-            android:layout_width="match_parent"
-            android:orientation="vertical">
-        <TextView
-                android:layout_width="match_parent"
-                android:textColor="@color/text_default"
-                android:text="улица Лефортовский вал, д 7"
-                android:paddingTop="0dp"
-                android:gravity="center_vertical"
-                android:drawablePadding="25dp"
-                android:drawableStart="@drawable/ic_a_point"
-                android:layout_height="0dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                />
-        <View
-                android:layout_width="match_parent"
-                android:layout_marginTop="1dp"
-                android:layout_marginStart="26dp"
-                android:layout_height="1dp"
-                android:background="@color/text_default"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:textColor="@color/text_default"
-                android:text="улица Д. Давыдова, д 5"
-                android:paddingTop="0dp"
-                android:gravity="center_vertical"
-                android:drawablePadding="25dp"
-                android:drawableStart="@drawable/ic_b_point"
-                android:layout_height="0dp"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                />
 
+    <data>
 
-    </LinearLayout>
-    <View
-            android:layout_width="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginStart="14dp"
-            android:layout_height="1dp"
-            android:background="@color/text_default"/>
+    </data>
+
     <LinearLayout
+            android:background="@drawable/components_bottom_sheet_info"
+            android:id="@+id/infoTrip_bottom_sheet"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="11dp">
-        <TextView
+            android:orientation="vertical"
+
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            tools:context=".BottomSheetInfoTripFragment">
+
+        <ImageView
+                android:background="@drawable/ic_baseline_horizontal_rule_24"
+                android:layout_gravity="center|top"
                 android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:scaleType="centerCrop" />
+
+        <TextView
+                android:id="@+id/time"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_width="193dp"
-                android:text="Цена за машину"
+                android:text="Сегодня в 12:17"
                 android:textColor="@color/text_default"
                 android:textSize="16dp"
-                />
+                android:textStyle="bold" />
 
-        <TextView
-                android:layout_height="wrap_content"
+        <LinearLayout
+                android:id="@+id/frame_way"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
-                android:gravity="end"
-                android:text="560 ₽"
-                android:textColor="@color/text_default"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginEnd="15dp"/>
-    </LinearLayout>
-    <View
-            android:layout_width="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginStart="14dp"
-            android:layout_height="1dp"
-            android:background="@color/text_default"/>
+                android:orientation="vertical">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="11dp">
+            <TextView
+                    android:drawablePadding="25dp"
+                    android:drawableStart="@drawable/ic_a_point"
+                    android:gravity="center_vertical"
+                    android:id="@+id/from"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:paddingTop="0dp"
+                    android:text="улица Лефортовский вал, д 7"
+                    android:textColor="@color/text_default" />
 
-        <TextView
+            <View
+                    android:background="@color/text_default"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_width="match_parent" />
+
+            <TextView
+                    android:drawablePadding="25dp"
+                    android:drawableStart="@drawable/ic_b_point"
+                    android:gravity="center_vertical"
+                    android:id="@+id/to"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:paddingTop="0dp"
+                    android:text="улица Д. Давыдова, д 5"
+                    android:textColor="@color/text_default" />
+
+
+        </LinearLayout>
+
+        <View
+                android:background="@color/text_default"
+                android:layout_height="1dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent" />
+
+        <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Свободных мест"
-                android:textColor="@color/text_default"
-                android:textSize="16dp"
-                android:layout_marginEnd="6dp"/>
-        <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="#C4C4C4"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="3dp"/>
-        <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="#1CDD5E"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="3dp"/>
-        <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="#1CDD5E"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="3dp"/>
-        <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="#1CDD5E"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="3dp"/>
+                android:layout_marginBottom="11dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="11dp"
+                android:layout_width="match_parent">
 
-        <TextView
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="193dp"
+                    android:text="Цена за машину"
+                    android:textColor="@color/text_default"
+                    android:textSize="16dp" />
+
+            <TextView
+                    android:gravity="end"
+                    android:id="@+id/cost"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:text="560 ₽"
+                    android:textColor="@color/text_default"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+                android:background="@color/text_default"
+                android:layout_height="1dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent" />
+
+        <LinearLayout
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="11dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="11dp"
                 android:layout_width="match_parent"
-                android:gravity="end"
-                android:text="3"
-                android:textColor="@color/text_default"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginEnd="41dp"/>
-    </LinearLayout>
-    <View
-            android:layout_width="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginStart="14dp"
-            android:layout_height="1dp"
-            android:background="@color/text_default"/>
+                android:orientation="horizontal">
 
-    <TextView
-            android:layout_height="251dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="11dp"
-            android:layout_width="382dp"
-            android:text="Хочу уехать на ситимобил и сидеть спереди. Багажа нет, только рюкзак с ноутбуком. Встречаемся около Мака."
-            android:textColor="@color/text_default"
-            android:textSize="16dp" />
-</LinearLayout>
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_width="wrap_content"
+                    android:text="Свободных мест"
+                    android:textColor="@color/text_default"
+                    android:textSize="16dp" />
+
+            <per.wsj.library.AndRatingBar
+                    android:id="@+id/places_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    app:starColor="#C4C4C4"
+                    app:bgColor="#1CDD5E"
+                    android:isIndicator="true"
+                    app:starDrawable="@drawable/rec_off"
+                    app:bgDrawable="@drawable/rec_off"
+                    android:numStars="4"
+                    app:starSpacing="1dp"
+                    android:rating="1"/>
+
+<!--            <View-->
+<!--                    android:background="#C4C4C4"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginEnd="3dp"-->
+<!--                    android:layout_width="20dp" />-->
+
+<!--            <View-->
+<!--                    android:background="#1CDD5E"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginEnd="3dp"-->
+<!--                    android:layout_width="20dp" />-->
+
+<!--            <View-->
+<!--                    android:background="#1CDD5E"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginEnd="3dp"-->
+<!--                    android:layout_width="20dp" />-->
+
+<!--            <View-->
+<!--                    android:background="#1CDD5E"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginEnd="3dp"-->
+<!--                    android:layout_width="20dp" />-->
+
+            <TextView
+                    android:gravity="end"
+                    android:id="@+id/freeplaces"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="41dp"
+                    android:layout_width="match_parent"
+                    android:text="3"
+                    android:textColor="@color/text_default"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+                android:background="@color/text_default"
+                android:layout_height="1dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent" />
+
+        <TextView
+                android:id="@+id/notes"
+                android:layout_height="251dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="11dp"
+                android:layout_width="382dp"
+                android:text="Хочу уехать на ситимобил и сидеть спереди. Багажа нет, только рюкзак с ноутбуком. Встречаемся около Мака."
+                android:textColor="@color/text_default"
+                android:textSize="16dp" />
+    </LinearLayout>
+</layout>
