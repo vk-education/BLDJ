@@ -29,19 +29,25 @@ class AccessCodeFragment : Fragment() {
 
     private fun verifyEmail() {
         val user = ConstantValues.auth!!.currentUser
-        user!!.sendEmailVerification()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(context, "Email sent to ${user.email}", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(context, "Failed to send email ${user.email}", Toast.LENGTH_LONG)
-                        .show()
-                }
+        if (!ConstantValues.alreadyCreated)
+            user!!.sendEmailVerification()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(context, "Email sent to ${user.email}", Toast.LENGTH_LONG)
+                            .show()
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Failed to send email ${user.email}",
+                            Toast.LENGTH_LONG
+                        )
+                            .show()
+                    }
 //                if (user.isEmailVerified) {
-                parentFragmentManager.beginTransaction()
-                    .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
-                    .commit()
+                    parentFragmentManager.beginTransaction()
+                        .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
+                        .commit()
 //                }
-            }
+                }
     }
 }

@@ -72,10 +72,11 @@ class CreateFragment : Fragment() {
                     to,
                     price,
                     places,
-                    notes,
-                    arrayListOf(ConstantValues.user)
+                    notes//,
+                    //mutableListOf(ConstantValues.user!!) падает на стековерфлоу
                 )
-                ConstantValues.MY_ADVERT = adv
+                //ConstantValues.MY_ADVERT = adv
+                ConstantValues.user!!.myAdvert = adv
 
                 advertsDbRef!!.child("$from-$to").setValue(adv)
                 val bottomSheet = BottomSheetCreateFragment()

@@ -17,9 +17,10 @@ class ConstantValues {
         var MY_ADVERT: Advert? = null
 
         //Объект текущего User.
-        lateinit var user: User
+        var user: User?=null
 
         const val USER_DB_REFERENCE = "users"
         const val ADVERTS_DB_REFERENCE = "adverts"
+        var alreadyCreated = false
     }
 }

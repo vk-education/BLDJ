@@ -9,22 +9,23 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent">
-        <TextView
-                android:id="@+id/txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="текущие поездки"
-                android:gravity="center"
-                android:textSize="@dimen/_20sdp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+<!--        <TextView-->
+<!--                android:id="@+id/txt"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="текущие поездки"-->
+<!--                android:gravity="center"-->
+<!--                android:textSize="@dimen/_20sdp"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent" />-->
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                app:layout_constraintTop_toBottomOf="@id/txt"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                android:padding="@dimen/_8sdp"/>-->
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/myAdsList"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:padding="@dimen/_8sdp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
