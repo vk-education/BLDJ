@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentMyTripsBinding
+import com.bldj.project.listeners.IBeTraveller
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues

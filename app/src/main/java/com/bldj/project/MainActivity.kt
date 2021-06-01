@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
     override fun onBeTravellerClicked(ad: Advert) {
         Log.i("onBeTravellerClicked", ad.from)
         //Checking if user is already a traveler of the advert or other advert.
-        if (ad.users.contains(ConstantValues.user) || !ConstantValues.user?.isTraveller!!) {
+        if (ad.users.contains(ConstantValues.user) || ConstantValues.user?.isTraveller!!) {
             Toast.makeText(this, "Вы уже попутчик", Toast.LENGTH_LONG).show()
         } else {
             ad.users.add(ConstantValues.user!!)

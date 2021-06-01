@@ -44,7 +44,7 @@ class AdsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View {Log.i("TUTLISTEN1", "IST")
         // Inflate the layout for this fragment
         adsFragmentBinding = FragmentAdsBinding.inflate(inflater, container, false)
         return adsFragmentBinding.root
@@ -53,7 +53,7 @@ class AdsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         listAds = ArrayList()
-
+        Log.i("TUTLISTEN2", "IST")
         usersDbRef =
             FirebaseDatabase.getInstance().reference.child(
                 ConstantValues.ADVERTS_DB_REFERENCE
