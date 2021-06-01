@@ -135,12 +135,19 @@
                     android:textColor="@color/text_default"
                     android:textSize="16dp" />
 
-            <RatingBar
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:numStars="5"
-                    android:rating="2"
-                    style="@style/TravellersCnt" />
+            <per.wsj.library.AndRatingBar
+                    android:id="@+id/places_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    app:starColor="#C4C4C4"
+                    app:bgColor="#1CDD5E"
+                    android:isIndicator="true"
+                    app:starDrawable="@drawable/rec_off"
+                    app:bgDrawable="@drawable/rec_off"
+                    android:numStars="4"
+                    app:starSpacing="1dp"
+                    android:rating="1"/>
 
 <!--            <View-->
 <!--                    android:background="#C4C4C4"-->
