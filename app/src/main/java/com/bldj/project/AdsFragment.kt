@@ -76,7 +76,7 @@ class AdsFragment : Fragment() {
                 }
             }
         })
-//        updateAds()
+        updateAds()
     }
 
     private fun updateAds() {
