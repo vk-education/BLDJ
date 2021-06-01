@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentAdsBinding
+import com.bldj.project.listeners.IBeTraveller
+import com.bldj.project.listeners.IGetAdvertInfo
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
@@ -128,15 +130,4 @@ class AdsFragment : Fragment() {
         }
         return deleteIndex
     }
-}
-
-/**
- * Interface for adding listener to beTraveller button.
- */
-interface IBeTraveller {
-    fun onBeTravellerClicked(ad: Advert)
-}
-
-interface IGetAdvertInfo{
-    fun onGetAdvertInfoClicked(ad: Advert)
 }

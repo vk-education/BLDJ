@@ -1,6 +1,7 @@
 package com.bldj.project
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,12 +42,18 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
         infoAdsBinding.to.text = ads.to
         infoAdsBinding.cost.text = ads.price.toString() + "₽"
         infoAdsBinding.freeplaces.text = (ads.places - ads.users.size).toString()
-        infoAdsBinding.notes.text = ads.notes
+        infoAdsBinding.placesBar.numStars = ads.places
+        val value: Int = ads.places - (ads.places - ads.users.size)
+        infoAdsBinding.placesBar.rating = value.toFloat()
+        Log.i("STRANGEVAL", "${ads.places} ${ads.users.size}");
+
+            infoAdsBinding.notes.text = ads.notes
         infoAdsBinding.time.text =
             if (sdfDay.format(ads.date).equals(currentDate))
                 "сегодня в ${sdfHours.format(ads.date)}"
             else
                 "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
+
     }
 
     companion object {
