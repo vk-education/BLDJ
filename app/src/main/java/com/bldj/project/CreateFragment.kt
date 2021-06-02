@@ -56,7 +56,7 @@ class CreateFragment : Fragment() {
                 if (ConstantValues.user!!.isTraveller) {
                     Toast.makeText(
                         context,
-                        "Вы уже находитесь в поездке. Удалите или выйдете из текущих",
+                        "Вы уже находитесь в поездке. Удалите или выйдbте из текущих",
                         Toast.LENGTH_LONG
                     ).show()
                     throw Exception()

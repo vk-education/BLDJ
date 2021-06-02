@@ -131,19 +131,25 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
         }
         //Checking if user is already a traveler of the advert or other advert.
         Log.i("POCHRMU2", ad.users.toString())
-        if (ConstantValues.user?.isTraveller!!) {
-            Toast.makeText(this, "Вы уже находитесь в другой поездке", Toast.LENGTH_LONG).show()
-        } else if (ad.users.contains(ConstantValues.user) || ad.owner == ConstantValues.user!!.id) {
-            Toast.makeText(this, "Вы уже попутчик", Toast.LENGTH_LONG).show()
-        } else {
-            ConstantValues.MY_ADVERT = ad
-            ad.users.add(ConstantValues.user!!)
-            runBlocking {
-                beTraveller(ad)
+
+        if(ad.users.size < ad.places){
+            if (ConstantValues.user?.isTraveller!!) {
+                Toast.makeText(this, "Вы уже находитесь в другой поездке", Toast.LENGTH_LONG).show()
+            } else if (ad.users.contains(ConstantValues.user) || ad.owner == ConstantValues.user!!.id) {
+                Toast.makeText(this, "Вы уже попутчик", Toast.LENGTH_LONG).show()
+            } else {
+                ConstantValues.MY_ADVERT = ad
+                ad.users.add(ConstantValues.user!!)
+                runBlocking {
+                    beTraveller(ad)
+                }
+                Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
             }
-            Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
         }
-        ConstantValues.MY_ADVERT = ad
+        else{
+            Toast.makeText(this, "Для вас нет места.", Toast.LENGTH_LONG).show()
+        }
+//        ConstantValues.MY_ADVERT = ad
     }
 
     /**
@@ -158,7 +164,6 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
 
             //ConstantValues.user!!.myAdvert = ad
             ConstantValues.user!!.isTraveller = true
-//            Log.i("NULLWHO", "${ConstantValues.user} ${usersDbRef} ")
             usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).setValue(ConstantValues.user!!)
         }
     }

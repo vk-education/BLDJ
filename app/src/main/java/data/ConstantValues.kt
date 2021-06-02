@@ -21,6 +21,7 @@ class ConstantValues {
 
         const val USER_DB_REFERENCE = "users"
         const val ADVERTS_DB_REFERENCE = "adverts"
+        const val HISTORY_DB_REFERENCE = "history"
         var alreadyCreated = false
     }
 }

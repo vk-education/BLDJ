@@ -47,6 +47,13 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
             infoAdsBinding.deleteAd.visibility = View.VISIBLE
             infoAdsBinding.confirmAd.setOnClickListener {
                 //Уехали
+                ConstantValues.database?.reference?.child(ConstantValues.HISTORY_DB_REFERENCE)
+                    ?.child("${ads.from}-${ads.to}")
+                    ?.setValue(ads)
+                val advRef =
+                    ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
+                advRef?.child("${ads.from}-${ads.to}")
+                    ?.removeValue()
             }
             infoAdsBinding.deleteAd.setOnClickListener {
                 val advRef =
@@ -56,15 +63,20 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
                 //?.setValue(ads.users)
                 ConstantValues.user!!.myAdvert = Advert()
                 ConstantValues.user!!.isTraveller = false
+
+                val usersDbRef =
+                    ConstantValues.database?.reference?.child(ConstantValues.USER_DB_REFERENCE)
+                usersDbRef!!.child(ConstantValues.user!!.email.replace(".", ""))
+                    .setValue(ConstantValues.user!!)
                 deleted = true
             }
         }
         infoAdsBinding.from.text = ads.from
         infoAdsBinding.to.text = ads.to
         infoAdsBinding.cost.text = ads.price.toString() + "₽"
-        infoAdsBinding.freeplaces.text = (ads.places - ads.users.size).toString()
+        infoAdsBinding.freeplaces.text = (ads.places - ads.users.size - 1).toString()
         infoAdsBinding.placesBar.numStars = ads.places
-        val value: Int = ads.places - (ads.places - ads.users.size)
+        val value: Int = ads.places - (ads.places - ads.users.size) + 1
         infoAdsBinding.placesBar.rating = value.toFloat()
         Log.i("STRANGEVAL", "${ads.places} ${ads.users.size}");
 
@@ -74,8 +86,6 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
                 "сегодня в ${sdfHours.format(ads.date)}"
             else
                 "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
-
-
     }
 
     companion object {
@@ -84,6 +94,7 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
             val arg = bundleOf(PARAM_AD to ad)
             it.arguments = arg
         }
+
         var deleted: Boolean = false
     }
 }

@@ -26,7 +26,7 @@ class TravelersFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         users = mutableListOf()
-        if (ConstantValues.MY_ADVERT != null) {
+        if (ConstantValues.user?.myAdvert != null) {
             usersDbRef = FirebaseDatabase.getInstance().reference
                 .child(ConstantValues.ADVERTS_DB_REFERENCE)
                 .child("${ConstantValues.MY_ADVERT?.from}-${ConstantValues.MY_ADVERT?.to}")
