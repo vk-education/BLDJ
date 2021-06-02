@@ -2,11 +2,10 @@ package com.bldj.project
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentMyTripsBinding
@@ -15,7 +14,6 @@ import com.bldj.project.listeners.IGetAdvertInfo
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
-import data.User
 
 
 class MyTripsFragment : Fragment() {
@@ -26,7 +24,6 @@ class MyTripsFragment : Fragment() {
     private var usersChildEventListener: ChildEventListener? = null
     private lateinit var adAdapter: AdAdapter
     private lateinit var myTripsBinding: FragmentMyTripsBinding
-    private var listener: IBeTraveller? = null
     private var beTravelerListener: IBeTraveller? = null
     private var getInfoListener: IGetAdvertInfo? = null
 

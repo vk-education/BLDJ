@@ -1,5 +1,6 @@
 package com.bldj.project
 
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.lang.Exception
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -29,6 +31,7 @@ class CreateFragment : Fragment() {
     private lateinit var priceET: EditText
     private lateinit var placesET: EditText
     private lateinit var notesET: EditText
+    private lateinit var timePicker: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +53,27 @@ class CreateFragment : Fragment() {
         priceET = view.findViewById(R.id.edit_price)
         placesET = view.findViewById(R.id.edit_places)
         notesET = view.findViewById(R.id.create_comments)
+        timePicker = view.findViewById(R.id.time_picker)
+
+        var pickedTime: String? = null
+
+        timePicker.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker_t, hour, minute ->
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, minute)
+                pickedTime = SimpleDateFormat("HH:mm").format(cal.time)
+                timePicker.text = pickedTime
+            }
+
+            TimePickerDialog(
+                context,
+                timeSetListener,
+                cal.get(Calendar.HOUR_OF_DAY),
+                cal.get(Calendar.MINUTE),
+                true
+            ).show()
+        }
 
         publishBtn?.setOnClickListener {
             try {
@@ -71,31 +95,34 @@ class CreateFragment : Fragment() {
                     Toast.makeText(
                         context,
                         "Адрес отправления не должен быть пустым",
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show()
                 } else if (to.isEmpty() || to.isBlank()) {
                     Toast.makeText(
                         context,
                         "Адрес прибытия не должен быть пустым",
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     )
                         .show()
                 } else if (price <= 0) {
-                    Toast.makeText(context, "Неправильная цена", Toast.LENGTH_LONG).show()
-                } else if (places < 2) {
-                    Toast.makeText(context, "Неправильное количество мест", Toast.LENGTH_LONG)
+                    Toast.makeText(context, "Неправильная цена", Toast.LENGTH_SHORT).show()
+                } else if (places < 2 || places > 8) {
+                    Toast.makeText(context, "Неправильное количество мест", Toast.LENGTH_SHORT)
+                        .show()
+                } else if (pickedTime == null) {
+                    Toast.makeText(context, "Время не выбрано.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
 
                     val adv = Advert(
                         Date(),
+                        pickedTime!!,
                         from,
                         to,
                         price,
                         places,
                         notes, arrayListOf(), ConstantValues.user!!.id//,
                         //mutableListOf(ConstantValues.user!!) падает на стековерфлоу
-
                     )
                     //ConstantValues.MY_ADVERT = adv
                     ConstantValues.user!!.myAdvert = adv

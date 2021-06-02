@@ -2,6 +2,7 @@ package com.bldj.project
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.StrictMode
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -30,8 +31,31 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
     private var usersChildEventListener: ChildEventListener? = null
     private var oldId = -1
 
+    private fun opening(){
+        if(BuildConfig.DEBUG){
+            StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build()
+            )
+
+            StrictMode.setVmPolicy(
+                StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyDeath()
+                    .build()
+            )
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        opening()
         setContentView(R.layout.activity_main)
         FirebaseApp.initializeApp(this)
 

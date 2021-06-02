@@ -34,7 +34,8 @@ class BottomSheetInfoTripFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ads = arguments?.getSerializable(BottomSheetInfoTripFragment.PARAM_AD) as? Advert ?: return
+        val ads =
+            arguments?.getSerializable(BottomSheetInfoTripFragment.PARAM_AD) as? Advert ?: return
 
         val sdfHours = SimpleDateFormat("HH:mm", Locale.getDefault())
         val sdfDay = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
@@ -45,11 +46,11 @@ class BottomSheetInfoTripFragment : BottomSheetDialogFragment() {
         infoHistBinding.cost.text = ads.price.toString() + "₽"
 
         infoHistBinding.notes.text = ads.notes
-        infoHistBinding.time.text =
-            if (sdfDay.format(ads.date).equals(currentDate))
-                "сегодня в ${sdfHours.format(ads.date)}"
-            else
-                "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
+        infoHistBinding.time.text = "ехали в ${ads.departTime}"
+//            if (sdfDay.format(ads.date).equals(currentDate))
+//                "сегодня в ${sdfHours.format(ads.date)}"
+//            else
+//                "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
     }
 
     companion object {

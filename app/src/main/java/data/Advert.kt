@@ -5,6 +5,7 @@ import java.util.*
 
 data class Advert(
     val date: Date = Date(),
+    val departTime: String = "",
     val from: String = "",
     val to: String = "",
     val price: Int = 0,

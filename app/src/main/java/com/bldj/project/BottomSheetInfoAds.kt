@@ -81,11 +81,11 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
         Log.i("STRANGEVAL", "${ads.places} ${ads.users.size}");
 
         infoAdsBinding.notes.text = ads.notes
-        infoAdsBinding.time.text =
-            if (sdfDay.format(ads.date).equals(currentDate))
-                "сегодня в ${sdfHours.format(ads.date)}"
-            else
-                "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
+        infoAdsBinding.time.text = "едем в ${ads.departTime}"
+//            if (sdfDay.format(ads.date).equals(currentDate))
+//                "сегодня в ${sdfHours.format(ads.date)}"
+//            else
+//                "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
     }
 
     companion object {
