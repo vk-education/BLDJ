@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
     private var usersChildEventListener: ChildEventListener? = null
     private var oldId = -1
 
-    private fun opening(){
-        if(BuildConfig.DEBUG){
+    private fun opening() {
+        if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(
                 StrictMode.ThreadPolicy.Builder()
                     .detectDiskReads()
@@ -147,17 +147,17 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
 
     override fun onBeTravellerClicked(ad: Advert) {
         Log.i("onBeTravellerClicked", ad.from)
-        if(ad == null){
-            Log.i("check","ad === null")
-        }else if(ad.users==null){
-            Log.i("check","ad.users === null")
-        }else if(ConstantValues.user == null){
-            Log.i("check","user === null")
+        if (ad == null) {
+            Log.i("check", "ad === null")
+        } else if (ad.users == null) {
+            Log.i("check", "ad.users === null")
+        } else if (ConstantValues.user == null) {
+            Log.i("check", "user === null")
         }
         //Checking if user is already a traveler of the advert or other advert.
         Log.i("POCHRMU2", ad.users.toString())
 
-        if(ad.users.size < ad.places){
+        if (ad.users.size < ad.places) {
             if (ConstantValues.user?.isTraveller!!) {
                 Toast.makeText(this, "Вы уже находитесь в другой поездке", Toast.LENGTH_LONG).show()
             } else if (ad.users.contains(ConstantValues.user) || ad.owner == ConstantValues.user!!.id) {
@@ -170,8 +170,7 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
                 }
                 Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
             }
-        }
-        else{
+        } else {
             Toast.makeText(this, "Для вас нет места.", Toast.LENGTH_LONG).show()
         }
 //        ConstantValues.MY_ADVERT = ad
@@ -189,7 +188,8 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
 
             //ConstantValues.user!!.myAdvert = ad
             ConstantValues.user!!.isTraveller = true
-            usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).setValue(ConstantValues.user!!)
+            usersDbRef!!.child(ConstantValues.user!!.email.replace(".", ""))
+                .setValue(ConstantValues.user!!)
         }
     }
 

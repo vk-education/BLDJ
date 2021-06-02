@@ -22,7 +22,7 @@
             android:layout_marginTop="23dp"
             android:layout_width="wrap_content"
             android:minLines="2"
-            android:text="Объявление опубликовано!"
+            android:text="@string/ad_published"
             android:textAlignment="center"
             android:textColor="#489973"
             android:textSize="36sp" />

@@ -85,7 +85,7 @@
         <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="193dp"
-                android:text="Цена за машину"
+                android:text="@string/price_per_car"
                 android:textColor="@color/text_default"
                 android:textSize="16dp"
                 />
@@ -111,7 +111,7 @@
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Посмотреть попутчиков"
+            android:text="@string/show_travelers"
             android:textAllCaps="false"
             android:textSize="16dp"
             android:background="?android:attr/selectableItemBackground"/>
