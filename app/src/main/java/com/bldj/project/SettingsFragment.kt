@@ -7,12 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatDelegate
 import com.bldj.project.databinding.SettingsLayoutBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import data.ConstantValues
 import data.IBackButton
+import data.User
 
 class SettingsFragment : Fragment(), IBackButton {
+    private var advertsDbRef: DatabaseReference? = null
     lateinit var inflaterThis: View
+    private lateinit var name: EditText
+    private lateinit var lastname: EditText
     private lateinit var settingsLayoutBinding: SettingsLayoutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +72,34 @@ class SettingsFragment : Fragment(), IBackButton {
                 parentFragmentManager.popBackStackImmediate();
             }
         }
+        name = settingsLayoutBinding.enterName
+        lastname = settingsLayoutBinding.enterLastname
+        val usersDbRef =
+            ConstantValues.database?.reference?.child(ConstantValues.USER_DB_REFERENCE)
+        settingsLayoutBinding.editName.setOnClickListener {
+            if(name.text.toString().isNotBlank() && lastname.text.toString().isNotBlank()){
+                val usersChildEventListener = object : ChildEventListener {
+                    override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                        val user: User = snapshot.getValue(User::class.java)!!
+                        if (user.id == FirebaseAuth.getInstance().currentUser.uid) {
+                            user.name = name.text.toString() + " " + lastname.text.toString()
+                            usersDbRef!!.child(user.email.replace(".","")).setValue(user)
+                        }
+                    }
+
+                    override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+
+                    override fun onChildRemoved(snapshot: DataSnapshot) {}
+
+                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+
+                    override fun onCancelled(error: DatabaseError) {}
+                }
+                usersDbRef?.addChildEventListener(usersChildEventListener as ChildEventListener)
+            }
+
+        }
+
         //return inflaterThis
         return settingsLayoutBinding.root
     }
