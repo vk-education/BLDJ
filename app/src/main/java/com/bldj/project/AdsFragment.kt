@@ -107,7 +107,7 @@ class AdsFragment : Fragment() {
             override fun onChildRemoved(snapshot: DataSnapshot) {
                 val deletedAdvert = snapshot.getValue(Advert::class.java)!!
                 val index = findIndex(deletedAdvert)
-                listAds.removeAt(index)
+                //listAds.removeAt(index)
                 adAdapter.notifyItemRemoved(index)
             }
 

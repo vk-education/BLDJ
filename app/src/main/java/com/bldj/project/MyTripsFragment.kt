@@ -29,6 +29,7 @@ class MyTripsFragment : Fragment() {
     private var beTravelerListener: IBeTraveller? = null
     private var getInfoListener: IGetAdvertInfo? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -52,7 +53,7 @@ class MyTripsFragment : Fragment() {
         usersChildEventListener = object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val ad: Advert = snapshot.getValue(Advert::class.java)!!
-                if(ad.owner == ConstantValues.user!!.id)
+                if(ad.owner == ConstantValues.user!!.id && !listAds.contains(ad))
                     listAds.add(ad)
 //                var lst = arrayListOf<String>()
 //                for (item in ad.users)
@@ -65,6 +66,8 @@ class MyTripsFragment : Fragment() {
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
             override fun onChildRemoved(snapshot: DataSnapshot) {
+                listAds.clear()
+                adAdapter.notifyDataSetChanged()
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -95,7 +98,16 @@ class MyTripsFragment : Fragment() {
     override fun onDetach() {
         beTravelerListener = null
         getInfoListener = null
+//        if(BottomSheetInfoAds.deleted){
+//            listAds.clear()
+//            adAdapter.notifyDataSetChanged()
+//        }
         super.onDetach()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initialize()
     }
 
 }

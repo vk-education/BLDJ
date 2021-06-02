@@ -16,6 +16,7 @@ import java.util.*
 
 class BottomSheetInfoAds : BottomSheetDialogFragment() {
 
+
     private lateinit var infoAdsBinding: FragmentBottomInfoAdsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,15 +39,22 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
         val sdfHours = SimpleDateFormat("HH:mm", Locale.getDefault())
         val sdfDay = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
         val currentDate = sdfDay.format(Date())
-        if(ads.owner!=ConstantValues.user!!.id){
+        if (ads.owner != ConstantValues.user!!.id) {
             infoAdsBinding.confirmAd.visibility = View.GONE
             infoAdsBinding.deleteAd.visibility = View.GONE
-        }else{
+        } else {
             infoAdsBinding.confirmAd.setOnClickListener {
 
             }
             infoAdsBinding.deleteAd.setOnClickListener {
-
+                val advRef =
+                    ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
+                advRef?.child("${ads.from}-${ads.to}")
+                    ?.removeValue()//child(ConstantValues.USER_DB_REFERENCE)
+                //?.setValue(ads.users)
+                ConstantValues.user!!.myAdvert = Advert()
+                ConstantValues.user!!.isTraveller = false
+                deleted = true
             }
         }
         infoAdsBinding.from.text = ads.from
@@ -74,5 +82,6 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
             val arg = bundleOf(PARAM_AD to ad)
             it.arguments = arg
         }
+        var deleted: Boolean = false
     }
 }
