@@ -109,6 +109,7 @@
             android:background="@color/text_default"/>
 
     <Button
+            android:id="@+id/travellers_info_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Посмотреть попутчиков"

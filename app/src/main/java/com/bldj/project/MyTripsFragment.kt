@@ -11,6 +11,7 @@ import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentMyTripsBinding
 import com.bldj.project.listeners.IBeTraveller
 import com.bldj.project.listeners.IGetAdvertInfo
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
@@ -101,6 +102,8 @@ class MyTripsFragment : Fragment() {
             invalidateAll()
         }
         initialize()
+        val navigationBar = activity?.findViewById<BottomNavigationView>(R.id.nav_bar)
+        navigationBar!!.visibility = View.VISIBLE
         return myTripsBinding.root
     }
 
