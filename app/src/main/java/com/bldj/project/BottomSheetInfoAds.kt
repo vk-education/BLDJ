@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import com.bldj.project.databinding.FragmentBottomInfoAdsBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import data.Advert
+import data.ConstantValues
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,12 +33,22 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ads = arguments?.getSerializable(PARAM_AD) as? Advert?: return
+        val ads = arguments?.getSerializable(PARAM_AD) as? Advert ?: return
 
         val sdfHours = SimpleDateFormat("HH:mm", Locale.getDefault())
         val sdfDay = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
         val currentDate = sdfDay.format(Date())
+        if(ads.owner!=ConstantValues.user!!.id){
+            infoAdsBinding.confirmAd.visibility = View.GONE
+            infoAdsBinding.deleteAd.visibility = View.GONE
+        }else{
+            infoAdsBinding.confirmAd.setOnClickListener {
 
+            }
+            infoAdsBinding.deleteAd.setOnClickListener {
+
+            }
+        }
         infoAdsBinding.from.text = ads.from
         infoAdsBinding.to.text = ads.to
         infoAdsBinding.cost.text = ads.price.toString() + "₽"
@@ -47,12 +58,13 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
         infoAdsBinding.placesBar.rating = value.toFloat()
         Log.i("STRANGEVAL", "${ads.places} ${ads.users.size}");
 
-            infoAdsBinding.notes.text = ads.notes
+        infoAdsBinding.notes.text = ads.notes
         infoAdsBinding.time.text =
             if (sdfDay.format(ads.date).equals(currentDate))
                 "сегодня в ${sdfHours.format(ads.date)}"
             else
                 "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
+
 
     }
 

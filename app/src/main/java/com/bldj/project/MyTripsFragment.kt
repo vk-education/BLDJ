@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentMyTripsBinding
 import com.bldj.project.listeners.IBeTraveller
+import com.bldj.project.listeners.IGetAdvertInfo
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
@@ -25,6 +26,8 @@ class MyTripsFragment : Fragment() {
     private lateinit var adAdapter: AdAdapter
     private lateinit var myTripsBinding: FragmentMyTripsBinding
     private var listener: IBeTraveller? = null
+    private var beTravelerListener: IBeTraveller? = null
+    private var getInfoListener: IGetAdvertInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +37,10 @@ class MyTripsFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is IBeTraveller) {
-            listener = context
+            beTravelerListener = context
+        }
+        if (context is IGetAdvertInfo) {
+            getInfoListener = context
         }
     }
 
@@ -46,12 +52,14 @@ class MyTripsFragment : Fragment() {
         usersChildEventListener = object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val ad: Advert = snapshot.getValue(Advert::class.java)!!
-                var lst = arrayListOf<String>()
-                for(item in ad.users)
-                    lst.add(item.email)
-                if (lst.contains(ConstantValues.user!!.email)) {
+                if(ad.owner == ConstantValues.user!!.id)
                     listAds.add(ad)
-                }
+//                var lst = arrayListOf<String>()
+//                for (item in ad.users)
+//                    lst.add(item.email)
+//                if (lst.contains(ConstantValues.user!!.email)) {
+//                    listAds.add(ad)
+//                }
                 adAdapter.notifyDataSetChanged()
             }
 
@@ -73,7 +81,8 @@ class MyTripsFragment : Fragment() {
         myTripsBinding = FragmentMyTripsBinding.inflate(inflater, container, false)
         myTripsBinding.myAdsList.layoutManager = LinearLayoutManager(context)
         myTripsBinding.myAdsList.setHasFixedSize(true)
-        adAdapter = AdAdapter { ad -> listener?.onBeTravellerClicked(ad) }
+        adAdapter = AdAdapter { ad -> beTravelerListener?.onBeTravellerClicked(ad) }
+        adAdapter.getInfoFuncProperty = { a -> getInfoListener?.onGetAdvertInfoClicked(a)}
         adAdapter.adsProperty = listAds
         myTripsBinding.apply {
             myAdsList.adapter = adAdapter
@@ -83,5 +92,10 @@ class MyTripsFragment : Fragment() {
         return myTripsBinding.root
     }
 
+    override fun onDetach() {
+        beTravelerListener = null
+        getInfoListener = null
+        super.onDetach()
+    }
 
 }

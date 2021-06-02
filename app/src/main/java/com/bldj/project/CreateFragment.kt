@@ -19,6 +19,7 @@ import java.util.*
 class CreateFragment : Fragment() {
 
     private var advertsDbRef: DatabaseReference? = null
+    private var usersDbRef: DatabaseReference? = null
     private lateinit var fromET: EditText
     private lateinit var toET: EditText
     private lateinit var priceET: EditText
@@ -37,7 +38,8 @@ class CreateFragment : Fragment() {
 
         advertsDbRef =
             ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
-
+        usersDbRef =
+            ConstantValues.database?.reference?.child(ConstantValues.USER_DB_REFERENCE)
         val publishBtn = view.findViewById<Button>(R.id.create_ad)
         fromET = view.findViewById(R.id.A_point)
         toET = view.findViewById(R.id.B_point)
@@ -72,13 +74,16 @@ class CreateFragment : Fragment() {
                     to,
                     price,
                     places,
-                    notes//,
+                    notes, arrayListOf(), ConstantValues.user!!.id//,
                     //mutableListOf(ConstantValues.user!!) падает на стековерфлоу
+
                 )
                 //ConstantValues.MY_ADVERT = adv
                 ConstantValues.user!!.myAdvert = adv
 
                 advertsDbRef!!.child("$from-$to").setValue(adv)
+                usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).child("myAdvert")
+                    .setValue(adv)
                 val bottomSheet = BottomSheetCreateFragment()
                 bottomSheet.show(parentFragmentManager, "TAG")
                 parentFragmentManager.beginTransaction()
