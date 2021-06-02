@@ -15,6 +15,7 @@ import com.bldj.project.listeners.IGetAdvertInfo
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
+import data.User
 
 
 class MyTripsFragment : Fragment() {
@@ -55,6 +56,11 @@ class MyTripsFragment : Fragment() {
                 val ad: Advert = snapshot.getValue(Advert::class.java)!!
                 if(ad.owner == ConstantValues.user!!.id && !listAds.contains(ad))
                     listAds.add(ad)
+                for(item in ad.users)
+                    if(item.id == ConstantValues.user!!.id && !listAds.contains(ad))
+                        listAds.add(ad)
+
+
 //                var lst = arrayListOf<String>()
 //                for (item in ad.users)
 //                    lst.add(item.email)
@@ -68,6 +74,7 @@ class MyTripsFragment : Fragment() {
             override fun onChildRemoved(snapshot: DataSnapshot) {
                 listAds.clear()
                 adAdapter.notifyDataSetChanged()
+                BottomSheetInfoAds.deleted = false
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}

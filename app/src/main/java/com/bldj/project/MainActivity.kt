@@ -120,6 +120,13 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
 
     override fun onBeTravellerClicked(ad: Advert) {
         Log.i("onBeTravellerClicked", ad.from)
+        if(ad == null){
+            Log.i("check","ad === null")
+        }else if(ad.users==null){
+            Log.i("check","ad.users === null")
+        }else if(ConstantValues.user == null){
+            Log.i("check","user === null")
+        }
         //Checking if user is already a traveler of the advert or other advert.
         if (ConstantValues.user?.isTraveller!!) {
             Toast.makeText(this, "Вы уже находитесь в другой поездке", Toast.LENGTH_LONG).show()
@@ -146,7 +153,7 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
             advRef?.child("${ad.from}-${ad.to}")?.child(ConstantValues.USER_DB_REFERENCE)
                 ?.setValue(ad.users)
 
-            ConstantValues.user!!.myAdvert = ad
+            //ConstantValues.user!!.myAdvert = ad
             ConstantValues.user!!.isTraveller = true
             usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).setValue(ConstantValues.user!!)
         }
