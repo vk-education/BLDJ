@@ -14,6 +14,7 @@ import data.ConstantValues
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.lang.Exception
 import java.util.*
 
 /**
@@ -51,57 +52,76 @@ class CreateFragment : Fragment() {
         notesET = view.findViewById(R.id.create_comments)
 
         publishBtn?.setOnClickListener {
-            val from = fromET.text.toString()
-            val to = toET.text.toString()
-            val price = priceET.text.toString().toInt()
-            val places = placesET.text.toString().toInt()
-            val notes = notesET.text.toString()
-            if (from.isBlank() || from.isEmpty()) {
-                Toast.makeText(
-                    context,
-                    "Адрес отправления не должен быть пустым",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else if (to.isEmpty() || to.isBlank()) {
-                Toast.makeText(context, "Адрес прибытия не должен быть пустым", Toast.LENGTH_LONG)
-                    .show()
-            } else if (price <= 0) {
-                Toast.makeText(context, "Неправильная цена", Toast.LENGTH_LONG).show()
-            } else if (places < 2) {
-                Toast.makeText(context, "Неправильное количество мест", Toast.LENGTH_LONG).show()
-            } else {
-
-                val adv = Advert(
-                    Date(),
-                    from,
-                    to,
-                    price,
-                    places,
-                    notes, arrayListOf(), ConstantValues.user!!.id//,
-                    //mutableListOf(ConstantValues.user!!) падает на стековерфлоу
-
-                )
-                //ConstantValues.MY_ADVERT = adv
-                ConstantValues.user!!.myAdvert = adv
-                ConstantValues.user!!.isTraveller = true
-                runBlocking {
-                    coroutineSetMyAdvert(adv, from, to)
+            try {
+                if (ConstantValues.user!!.isTraveller) {
+                    Toast.makeText(
+                        context,
+                        "Вы уже находитесь в поездке. Удалите или выйдете из текущих",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    throw Exception()
                 }
-                val bottomSheet = BottomSheetCreateFragment()
-                bottomSheet.show(parentFragmentManager, "TAG")
-                parentFragmentManager.beginTransaction()
-                    .replace((view?.parent as View).id, AdsFragment())
-                    .addToBackStack(null).commit()
+
+                val from = fromET.text.toString()
+                val to = toET.text.toString()
+                val price = priceET.text.toString().toInt()
+                val places = placesET.text.toString().toInt()
+                val notes = notesET.text.toString()
+                if (from.isBlank() || from.isEmpty()) {
+                    Toast.makeText(
+                        context,
+                        "Адрес отправления не должен быть пустым",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else if (to.isEmpty() || to.isBlank()) {
+                    Toast.makeText(
+                        context,
+                        "Адрес прибытия не должен быть пустым",
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                } else if (price <= 0) {
+                    Toast.makeText(context, "Неправильная цена", Toast.LENGTH_LONG).show()
+                } else if (places < 2) {
+                    Toast.makeText(context, "Неправильное количество мест", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+
+                    val adv = Advert(
+                        Date(),
+                        from,
+                        to,
+                        price,
+                        places,
+                        notes, arrayListOf(), ConstantValues.user!!.id//,
+                        //mutableListOf(ConstantValues.user!!) падает на стековерфлоу
+
+                    )
+                    //ConstantValues.MY_ADVERT = adv
+                    ConstantValues.user!!.myAdvert = adv
+                    ConstantValues.user!!.isTraveller = true
+                    runBlocking {
+                        coroutineSetMyAdvert(adv, from, to)
+                    }
+                    val bottomSheet = BottomSheetCreateFragment()
+                    bottomSheet.show(parentFragmentManager, "TAG")
+                    parentFragmentManager.beginTransaction()
+                        .replace((view?.parent as View).id, AdsFragment())
+                        .addToBackStack(null).commit()
+                }
+            } catch (e: Exception) {
             }
         }
         // Inflate the layout for this fragment
         return view
     }
 
-    private suspend fun coroutineSetMyAdvert(adv: Advert, from: String, to: String) = coroutineScope {
-        launch {
-            advertsDbRef!!.child("$from-$to").setValue(adv)
-            usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).setValue(ConstantValues.user!!)
+    private suspend fun coroutineSetMyAdvert(adv: Advert, from: String, to: String) =
+        coroutineScope {
+            launch {
+                advertsDbRef!!.child("$from-$to").setValue(adv)
+                usersDbRef!!.child(ConstantValues.user!!.email.replace(".", ""))
+                    .setValue(ConstantValues.user!!)
+            }
         }
-    }
 }

@@ -43,8 +43,10 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
             infoAdsBinding.confirmAd.visibility = View.GONE
             infoAdsBinding.deleteAd.visibility = View.GONE
         } else {
+            infoAdsBinding.confirmAd.visibility = View.VISIBLE
+            infoAdsBinding.deleteAd.visibility = View.VISIBLE
             infoAdsBinding.confirmAd.setOnClickListener {
-
+                //Уехали
             }
             infoAdsBinding.deleteAd.setOnClickListener {
                 val advRef =

@@ -76,8 +76,10 @@ class TravelersFragment : Fragment() {
                     )
                     newUser.isTraveller = mapUser["traveller"] as Boolean
 
-                    users.add(newUser)
-                    usersAdapter.notifyDataSetChanged()
+                    if (!users.contains(newUser)) {
+                        users.add(newUser)
+                        usersAdapter.notifyDataSetChanged()
+                    }
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
