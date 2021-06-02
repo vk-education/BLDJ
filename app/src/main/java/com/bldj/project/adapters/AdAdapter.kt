@@ -2,6 +2,7 @@ package com.bldj.project.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bldj.project.R
@@ -68,6 +69,9 @@ class AdAdapter(val onBeTravellerClicked: (ad: Advert) -> Unit) :
                     "сегодня в ${sdfHours.format(ad.date)}"
                 else
                     "${sdfDay.format(ad.date)} в ${sdfHours.format(ad.date)}"
+//            adBinding.adInfoBtn.setOnClickListener{
+//                Toast.makeText(adBinding.root.context,"",Toast.LENGTH_LONG).show()
+//            }
         }
     }
 }
