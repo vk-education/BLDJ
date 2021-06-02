@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bldj.project.databinding.LoginLayoutBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.actionCodeSettings
 import com.google.firebase.database.DatabaseReference
@@ -42,6 +43,9 @@ class LoginFragment : Fragment() {
 //        inflaterThis.findViewById<Button>(R.id.go_bttn).setOnClickListener { onLogin(loginET) }
         // Inflate the layout for this fragment
         //return inflaterThis
+
+        val navigationBar = activity?.findViewById<BottomNavigationView>(R.id.nav_bar)
+        navigationBar!!.visibility = View.GONE
         loginLayoutBinding.goBttn.setOnClickListener { onLogin() }
         return loginLayoutBinding.root
     }
@@ -78,6 +82,7 @@ class LoginFragment : Fragment() {
                     val user = User(login, password)
                     user.id = ConstantValues.auth?.currentUser!!.uid
                     ConstantValues.user = user
+                    ConstantValues.alreadyCreated = false
                     usersDbRef!!.child(login.replace(".", "")).setValue(user)
                     parentFragmentManager.beginTransaction()
                         .replace((view?.parent as View).id, AccessCodeFragment(), "LoginSuccess")

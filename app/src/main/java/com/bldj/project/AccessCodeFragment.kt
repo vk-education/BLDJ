@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import data.ConstantValues
@@ -28,6 +30,12 @@ class AccessCodeFragment : Fragment() {
     }
 
     private fun verifyEmail() {
+        val btn = inflaterThis.findViewById<Button>(R.id.ready_bttn)
+        btn.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
+                .commit()
+        }
         val user = ConstantValues.auth!!.currentUser
         if (!ConstantValues.alreadyCreated)
             user!!.sendEmailVerification()
@@ -44,10 +52,11 @@ class AccessCodeFragment : Fragment() {
                             .show()
                     }
 //                if (user.isEmailVerified) {
-                    parentFragmentManager.beginTransaction()
-                        .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
-                        .commit()
 //                }
                 }
+        else {
+            val txt = inflaterThis.findViewById<TextView>(R.id.registrationConfirmText)
+            txt.text = "Вы уже зарегистрированы"
+        }
     }
 }

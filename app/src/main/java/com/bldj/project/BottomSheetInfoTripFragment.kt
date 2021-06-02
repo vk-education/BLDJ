@@ -1,16 +1,14 @@
 package com.bldj.project
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import com.bldj.project.databinding.FragmentBottomInfoAdsBinding
+import androidx.fragment.app.FragmentTransaction
 import com.bldj.project.databinding.FragmentBottomInfoTripBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import data.Advert
-import data.ConstantValues
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,8 +32,7 @@ class BottomSheetInfoTripFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ads =
-            arguments?.getSerializable(BottomSheetInfoTripFragment.PARAM_AD) as? Advert ?: return
+        val ads = arguments?.getSerializable(BottomSheetInfoTripFragment.PARAM_AD) as? Advert ?: return
 
         val sdfHours = SimpleDateFormat("HH:mm", Locale.getDefault())
         val sdfDay = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
@@ -46,11 +43,31 @@ class BottomSheetInfoTripFragment : BottomSheetDialogFragment() {
         infoHistBinding.cost.text = ads.price.toString() + "₽"
 
         infoHistBinding.notes.text = ads.notes
-        infoHistBinding.time.text = "ехали в ${ads.departTime}"
-//            if (sdfDay.format(ads.date).equals(currentDate))
-//                "сегодня в ${sdfHours.format(ads.date)}"
-//            else
-//                "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
+        infoHistBinding.time.text =
+            if (sdfDay.format(ads.date).equals(currentDate))
+                "сегодня в ${sdfHours.format(ads.date)}"
+            else
+                "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
+        infoHistBinding.travellersInfoButton.setOnClickListener {
+//            val builder = AlertDialog.Builder(
+//                requireActivity()
+//            )
+
+           // val inflater = requireActivity().layoutInflater
+//            val dialog = LayoutInflater.from(context).inflate(R.la)
+//            val builder = AlertDialog.Builder(this).setView(dialog).setTitle("Друзья")
+//            val builder = AlertDialog.Builder(requireActivity()).setView(LayoutInflater.from(context).inflate(R.layout.))
+//            builder.setMessage("This is an Alert dialog in kotlin")
+//                .setCancelable(false)
+//                .setPositiveButton("ok") { dialog, id -> dismiss()}
+//            val alert = builder.create()
+//            alert.show()
+
+            val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
+            ft.addToBackStack(null);
+            val newFragment = TravellersInfoDialog(ads.users)
+            newFragment.show(ft, "Попутчики")
+        }
     }
 
     companion object {

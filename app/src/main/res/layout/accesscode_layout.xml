@@ -15,18 +15,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
             android:alpha="0.55"
             android:backgroundTint="#000000"
-            android:textColor="@color/text_default"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/ic_key"
-            android:hint="Введите код с почты"
-            android:id="@+id/code_edit"
+            android:hint="Подтвердите регистрацию на почте"
+            android:id="@+id/registrationConfirmText"
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:layout_width="wrap_content"
             android:maxLines="1"
+            android:textColor="@color/text_default"
             android:textColorHint="@color/text_default"
             app:layout_constraintBottom_toTopOf="@id/ready_bttn"
             app:layout_constraintEnd_toEndOf="parent"
