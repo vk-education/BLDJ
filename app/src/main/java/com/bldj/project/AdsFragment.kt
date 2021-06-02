@@ -128,7 +128,7 @@ class AdsFragment : Fragment() {
      */
     private fun findIndex(deletedAdvert: Advert): Int {
         var deleteIndex: Int = -1
-        for (i in 0..listAds.size) {
+        for (i in 0 until listAds.size) {
             if (listAds[i] == deletedAdvert) {
                 deleteIndex = i
                 break
