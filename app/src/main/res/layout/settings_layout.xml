@@ -21,7 +21,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
-                android:text="Настройки"
+                android:text="@string/settings"
                 android:textAllCaps="false"
                 android:textColor="@color/text_default"
                 android:textSize="24dp"
@@ -151,6 +151,8 @@
                 app:layout_constraintTop_toBottomOf="@id/enter_lastname" />
 
         <Button
+                android:background="#BADCFF"
+                android:elevation="1dp"
                 android:id="@+id/edit_name"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"

@@ -68,20 +68,5 @@
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="8dp" />
-
-        <Button
-                android:gravity="center"
-                android:id="@+id/back"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="обратно"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:layout_height="0dp"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                app:layout_constraintTop_toBottomOf="@id/layoutHeader" />-->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
