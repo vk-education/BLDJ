@@ -88,6 +88,9 @@ class LoginFragment : Fragment() {
                     ConstantValues.auth?.signInWithEmailAndPassword(login, password)
                         ?.addOnCompleteListener { taskAnother ->
                             if (taskAnother.isSuccessful) {
+                                val user = User(login, password)
+                                user.id = ConstantValues.auth?.currentUser!!.uid
+                                ConstantValues.user = user
                                 ConstantValues.alreadyCreated = true
                                 parentFragmentManager.beginTransaction()
                                     .replace(
