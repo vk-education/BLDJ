@@ -9,15 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bldj.project.adapters.AdAdapter
+import com.bldj.project.adapters.HistoryAdapter
 import com.bldj.project.databinding.FragmentHistoryBinding
 import com.bldj.project.listeners.IBeTraveller
 import com.bldj.project.listeners.IGetAdvertInfo
+import com.bldj.project.listeners.IGetHistoryInfo
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 /**
  * Фрфгмент истории поездок - часть главной страницы
@@ -27,17 +26,14 @@ class HistoryFragment : Fragment() {
     private lateinit var historyFragmentBinding: FragmentHistoryBinding
     private var historyDbRef: DatabaseReference? = null
     private var beTravelerListener: IBeTraveller? = null
-    private lateinit var adAdapter: AdAdapter
+    private lateinit var historyAdapter: HistoryAdapter
     private var usersChildEventListener: ChildEventListener? = null
-    private var getInfoListener: IGetAdvertInfo? = null
+    private var getInfoListener: IGetHistoryInfo? = null
     private lateinit var histAds: ArrayList<Advert>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is IBeTraveller) {
-            beTravelerListener = context
-        }
-        if (context is IGetAdvertInfo) {
+        if (context is IGetHistoryInfo) {
             getInfoListener = context
         }
     }
@@ -76,12 +72,11 @@ class HistoryFragment : Fragment() {
         historyFragmentBinding.rvMovies.layoutManager = LinearLayoutManager(context)
         historyFragmentBinding.rvMovies.setHasFixedSize(true)
 
-        adAdapter = AdAdapter { ad -> beTravelerListener?.onBeTravellerClicked(ad) }
-        adAdapter.getInfoFuncProperty = { a -> getInfoListener?.onGetAdvertInfoClicked(a) }
-        adAdapter.adsProperty = histAds
+        historyAdapter = HistoryAdapter { ad -> getInfoListener?.onGetHistoryInfoClicked(ad) }
+        historyAdapter.adsProperty = histAds
 
         historyFragmentBinding.apply {
-            historyFragmentBinding.rvMovies.adapter = adAdapter
+            historyFragmentBinding.rvMovies.adapter = historyAdapter
             invalidateAll()
         }
 
@@ -110,7 +105,7 @@ class HistoryFragment : Fragment() {
                         }
 //                    }
 //                }
-                adAdapter.notifyDataSetChanged()
+                historyAdapter.notifyDataSetChanged()
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
@@ -118,7 +113,7 @@ class HistoryFragment : Fragment() {
                 val deletedAdvert = snapshot.getValue(Advert::class.java)!!
                 val index = findIndex(deletedAdvert)
                 //listAds.removeAt(index)
-                adAdapter.notifyItemRemoved(index)
+                historyAdapter.notifyItemRemoved(index)
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}

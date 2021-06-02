@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.bldj.project.listeners.IBeTraveller
 import com.bldj.project.listeners.IGetAdvertInfo
+import com.bldj.project.listeners.IGetHistoryInfo
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +24,7 @@ import data.User
 import kotlinx.coroutines.*
 import java.security.InvalidParameterException
 
-class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
+class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHistoryInfo {
 
     private var usersDbRef: DatabaseReference? = null
     private var usersChildEventListener: ChildEventListener? = null
@@ -170,6 +171,11 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
 
     override fun onGetAdvertInfoClicked(ad: Advert) {
         val bottomSheet = BottomSheetInfoAds.newInstance(ad)
+        bottomSheet.show(supportFragmentManager, "TAG")
+    }
+
+    override fun onGetHistoryInfoClicked(ad: Advert) {
+        val bottomSheet = BottomSheetInfoTripFragment.newInstance(ad)
         bottomSheet.show(supportFragmentManager, "TAG")
     }
 }
