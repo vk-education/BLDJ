@@ -20,6 +20,7 @@ import data.Advert
 import data.ConstantValues
 import data.IBackButton
 import data.User
+import kotlinx.coroutines.*
 import java.security.InvalidParameterException
 
 class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
@@ -123,15 +124,26 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo {
         if (ad.users.contains(ConstantValues.user) || ConstantValues.user?.isTraveller!! || ad.owner == ConstantValues.user!!.id) {
             Toast.makeText(this, "Вы уже попутчик", Toast.LENGTH_LONG).show()
         } else {
+            ConstantValues.MY_ADVERT = ad
             ad.users.add(ConstantValues.user!!)
+            runBlocking {
+                beTraveller(ad)
+            }
+            Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
+        }
+        ConstantValues.MY_ADVERT = ad
+    }
+
+    /**
+     * suspend fun for being a child
+     */
+    private suspend fun beTraveller(ad: Advert) = coroutineScope {
+        launch {
             val advRef =
                 ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
             advRef?.child("${ad.from}-${ad.to}")?.child(ConstantValues.USER_DB_REFERENCE)
                 ?.setValue(ad.users)
-            Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
         }
-        ConstantValues.MY_ADVERT = ad
-
     }
 
     override fun onGetAdvertInfoClicked(ad: Advert) {

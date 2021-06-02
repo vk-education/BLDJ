@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.database.DatabaseReference
 import data.Advert
 import data.ConstantValues
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
 /**
@@ -81,9 +84,9 @@ class CreateFragment : Fragment() {
                 //ConstantValues.MY_ADVERT = adv
                 ConstantValues.user!!.myAdvert = adv
 
-                advertsDbRef!!.child("$from-$to").setValue(adv)
-                usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).child("myAdvert")
-                    .setValue(adv)
+                runBlocking {
+                    coroutineSetMyAdvert(adv, from, to)
+                }
                 val bottomSheet = BottomSheetCreateFragment()
                 bottomSheet.show(parentFragmentManager, "TAG")
                 parentFragmentManager.beginTransaction()
@@ -93,5 +96,13 @@ class CreateFragment : Fragment() {
         }
         // Inflate the layout for this fragment
         return view
+    }
+
+    private suspend fun coroutineSetMyAdvert(adv: Advert, from: String, to: String) = coroutineScope {
+        launch {
+            advertsDbRef!!.child("$from-$to").setValue(adv)
+            usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).child("myAdvert")
+                .setValue(adv)
+        }
     }
 }

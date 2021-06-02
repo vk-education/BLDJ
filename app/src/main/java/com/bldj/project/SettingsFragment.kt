@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference
 import data.ConstantValues
 import data.IBackButton
 import data.User
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class SettingsFragment : Fragment(), IBackButton {
     private var advertsDbRef: DatabaseReference? = null
@@ -80,10 +82,14 @@ class SettingsFragment : Fragment(), IBackButton {
             if(name.text.toString().isNotBlank() && lastname.text.toString().isNotBlank()){
                 val usersChildEventListener = object : ChildEventListener {
                     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                        val user: User = snapshot.getValue(User::class.java)!!
-                        if (user.id == FirebaseAuth.getInstance().currentUser.uid) {
-                            user.name = name.text.toString() + " " + lastname.text.toString()
-                            usersDbRef!!.child(user.email.replace(".","")).setValue(user)
+                        runBlocking {
+                            launch {
+                                val user: User = snapshot.getValue(User::class.java)!!
+                                if (user.id == FirebaseAuth.getInstance().currentUser.uid) {
+                                    user.name = name.text.toString() + " " + lastname.text.toString()
+                                    usersDbRef!!.child(user.email.replace(".","")).setValue(user)
+                                }
+                            }
                         }
                     }
 

@@ -16,6 +16,8 @@ import com.bldj.project.listeners.IGetAdvertInfo
 import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * Фрагмент для окна объявлений.
@@ -89,11 +91,15 @@ class AdsFragment : Fragment() {
     private fun updateAds() {
         usersChildEventListener = object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                val ad: Advert = snapshot.getValue(Advert::class.java)!!
-                if (!listAds.contains(ad)) {
-                    listAds.add(ad)
-                    Log.i("ads", "dobavil")
-                }
+               runBlocking {
+                   launch {
+                       val ad: Advert = snapshot.getValue(Advert::class.java)!!
+                       if (!listAds.contains(ad)) {
+                           listAds.add(ad)
+                           Log.i("ads", "dobavil")
+                       }
+                   }
+               }
                 adAdapter.notifyDataSetChanged()
             }
 
