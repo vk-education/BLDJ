@@ -26,18 +26,18 @@ class TravelersFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         users = mutableListOf()
-//        if (ConstantValues.MY_ADVERT != null) {
-//            usersDbRef = FirebaseDatabase.getInstance().reference
-//                .child(ConstantValues.ADVERTS_DB_REFERENCE)
-//                .child("${ConstantValues.MY_ADVERT?.from}-${ConstantValues.MY_ADVERT?.to}")
-//                .child("users")
-//        }
-        if(ConstantValues.user?.myAdvert!=null){
+        if (ConstantValues.MY_ADVERT != null) {
             usersDbRef = FirebaseDatabase.getInstance().reference
                 .child(ConstantValues.ADVERTS_DB_REFERENCE)
-                .child("${ConstantValues.user!!.myAdvert.from}-${ConstantValues.user!!.myAdvert.to}")
+                .child("${ConstantValues.MY_ADVERT?.from}-${ConstantValues.MY_ADVERT?.to}")
                 .child("users")
         }
+//        if(ConstantValues.user?.myAdvert!=null){
+//            usersDbRef = FirebaseDatabase.getInstance().reference
+//                .child(ConstantValues.ADVERTS_DB_REFERENCE)
+//                .child("${ConstantValues.user!!.myAdvert.from}-${ConstantValues.user!!.myAdvert.to}")
+//                .child("users")
+//        }
     }
 
     override fun onCreateView(

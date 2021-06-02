@@ -54,11 +54,16 @@ class MyTripsFragment : Fragment() {
         usersChildEventListener = object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val ad: Advert = snapshot.getValue(Advert::class.java)!!
-                if(ad.owner == ConstantValues.user!!.id && !listAds.contains(ad))
+                if(ad.owner == ConstantValues.user!!.id && !listAds.contains(ad)){
                     listAds.add(ad)
+                    ConstantValues.MY_ADVERT = ad
+                }
                 for(item in ad.users)
-                    if(item.id == ConstantValues.user!!.id && !listAds.contains(ad))
+                    if(item.id == ConstantValues.user!!.id && !listAds.contains(ad)){
                         listAds.add(ad)
+                        ConstantValues.MY_ADVERT = ad
+                    }
+
 
 
 //                var lst = arrayListOf<String>()
