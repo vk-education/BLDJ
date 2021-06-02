@@ -83,7 +83,7 @@ class CreateFragment : Fragment() {
                 )
                 //ConstantValues.MY_ADVERT = adv
                 ConstantValues.user!!.myAdvert = adv
-
+                ConstantValues.user!!.isTraveller = true
                 runBlocking {
                     coroutineSetMyAdvert(adv, from, to)
                 }
@@ -101,8 +101,7 @@ class CreateFragment : Fragment() {
     private suspend fun coroutineSetMyAdvert(adv: Advert, from: String, to: String) = coroutineScope {
         launch {
             advertsDbRef!!.child("$from-$to").setValue(adv)
-            usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).child("myAdvert")
-                .setValue(adv)
+            usersDbRef!!.child(ConstantValues.user!!.email.replace(".", "")).setValue(ConstantValues.user!!)
         }
     }
 }
