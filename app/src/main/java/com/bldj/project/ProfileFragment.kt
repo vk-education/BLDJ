@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.add
 import com.google.firebase.auth.FirebaseAuth
+import data.ConstantValues
 
 class ProfileFragment : Fragment() {
 
@@ -26,6 +28,11 @@ class ProfileFragment : Fragment() {
         val settings: Button = inflaterThis.findViewById(R.id.settings)
         val info: Button = inflaterThis.findViewById(R.id.info)
         val exit:Button = inflaterThis.findViewById(R.id.exit)
+        val nameLastname: TextView = inflaterThis.findViewById(R.id.name_lastName)
+        val email: TextView = inflaterThis.findViewById(R.id.email)
+
+        nameLastname.text = ConstantValues.user!!.name
+        email.text = ConstantValues.user!!.email
 
         settings.setOnClickListener {
             parentFragmentManager.beginTransaction()
