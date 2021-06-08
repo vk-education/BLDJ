@@ -1,4 +1,4 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.content.Context
 import android.os.Bundle
@@ -6,34 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bldj.project.R
 import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentMyTripsBinding
 import com.bldj.project.listeners.IBeTraveller
 import com.bldj.project.listeners.IGetAdvertInfo
-import com.bldj.project.views.BottomSheetInfoAds
+import com.bldj.project.modelfactories.MyTripsModelFactory
+import com.bldj.project.viewmodels.MyTripsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.*
-import data.Advert
-import data.ConstantValues
 
 
 class MyTripsFragment : Fragment() {
-
-
-    private var usersDbRef: DatabaseReference? = null
-    private var listAds: ArrayList<Advert> = ArrayList()
-    private var usersChildEventListener: ChildEventListener? = null
     private lateinit var adAdapter: AdAdapter
     private lateinit var myTripsBinding: FragmentMyTripsBinding
     private var beTravelerListener: IBeTraveller? = null
     private var getInfoListener: IGetAdvertInfo? = null
+    private val viewModel: MyTripsViewModel by viewModels { MyTripsModelFactory() }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -46,45 +41,7 @@ class MyTripsFragment : Fragment() {
     }
 
     private fun initialize() {
-        usersDbRef =
-            FirebaseDatabase.getInstance().reference.child(
-                ConstantValues.ADVERTS_DB_REFERENCE
-            )
-        usersChildEventListener = object : ChildEventListener {
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                val ad: Advert = snapshot.getValue(Advert::class.java)!!
-                if(ad.owner == ConstantValues.user!!.id && !listAds.contains(ad)){
-                    listAds.add(ad)
-                    ConstantValues.MY_ADVERT = ad
-                }
-                for(item in ad.users)
-                    if(item.id == ConstantValues.user!!.id && !listAds.contains(ad)){
-                        listAds.add(ad)
-                        ConstantValues.MY_ADVERT = ad
-                    }
-
-
-
-//                var lst = arrayListOf<String>()
-//                for (item in ad.users)
-//                    lst.add(item.email)
-//                if (lst.contains(ConstantValues.user!!.email)) {
-//                    listAds.add(ad)
-//                }
-                adAdapter.notifyDataSetChanged()
-            }
-
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-                listAds.clear()
-                adAdapter.notifyDataSetChanged()
-                BottomSheetInfoAds.deleted = false
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
-            override fun onCancelled(error: DatabaseError) {}
-        }
-        usersDbRef?.addChildEventListener(usersChildEventListener!!)
+        viewModel.trips.observe(viewLifecycleOwner, { x -> adAdapter.adsProperty = x })
     }
 
     override fun onCreateView(
@@ -96,8 +53,8 @@ class MyTripsFragment : Fragment() {
         myTripsBinding.myAdsList.layoutManager = LinearLayoutManager(context)
         myTripsBinding.myAdsList.setHasFixedSize(true)
         adAdapter = AdAdapter { ad -> beTravelerListener?.onBeTravellerClicked(ad) }
-        adAdapter.getInfoFuncProperty = { a -> getInfoListener?.onGetAdvertInfoClicked(a)}
-        adAdapter.adsProperty = listAds
+        adAdapter.getInfoFuncProperty = { a -> getInfoListener?.onGetAdvertInfoClicked(a) }
+        adAdapter.adsProperty = arrayListOf()
         myTripsBinding.apply {
             myAdsList.adapter = adAdapter
             invalidateAll()

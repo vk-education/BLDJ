@@ -1,4 +1,4 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bldj.project.R
 import com.bldj.project.databinding.LoginLayoutBinding
-import com.bldj.project.views.AccessCodeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -35,13 +35,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         loginLayoutBinding = LoginLayoutBinding.inflate(inflater, container, false)
-//        inflaterThis =
-//            LayoutInflater.from(this.context).inflate(R.layout.login_layout, container, false)
-//
-//        val loginET: EditText = inflaterThis.findViewById(R.id.login_edit)
-//        inflaterThis.findViewById<Button>(R.id.go_bttn).setOnClickListener { onLogin(loginET) }
-        // Inflate the layout for this fragment
-        //return inflaterThis
 
         val navigationBar = activity?.findViewById<BottomNavigationView>(R.id.nav_bar)
         navigationBar!!.visibility = View.GONE

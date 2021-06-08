@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bldj.project.R
-import com.bldj.project.TripsFragment
 import data.ConstantValues
 
 class AccessCodeFragment : Fragment() {

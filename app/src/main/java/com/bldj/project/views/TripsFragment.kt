@@ -1,4 +1,4 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -42,7 +42,10 @@ class TripsFragment : Fragment() {
         //tripsFragmentBinding.currentText.textSize = R.dimen._20ssp.toFloat()
         tripsFragmentBinding.historyText.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace((tripsFragmentBinding.root.parent/*currentTrips.parent*/ as View).id, HistoryFragment())
+                .replace(
+                    (tripsFragmentBinding.root.parent/*currentTrips.parent*/ as View).id,
+                    HistoryFragment()
+                )
                 .addToBackStack(null).commit()
         }
 //        tripsFragmentBinding.historyText.setOnClickListener {

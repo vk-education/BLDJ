@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentTransaction
-import com.bldj.project.TravellersInfoDialog
 import com.bldj.project.databinding.FragmentBottomInfoTripBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import data.Advert

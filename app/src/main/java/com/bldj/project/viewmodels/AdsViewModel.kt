@@ -26,7 +26,6 @@ class AdsViewModel : ViewModel() {
     }
 
     private fun loadAds() {
-
         viewModelScope.launch {
             usersChildEventListener = object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
