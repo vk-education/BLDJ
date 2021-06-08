@@ -11,6 +11,7 @@ import com.bldj.project.adapters.AdAdapter
 import com.bldj.project.databinding.FragmentMyTripsBinding
 import com.bldj.project.listeners.IBeTraveller
 import com.bldj.project.listeners.IGetAdvertInfo
+import com.bldj.project.views.BottomSheetInfoAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import data.Advert

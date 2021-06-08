@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bldj.project.adapters.ViewPagerAdapter
 import com.bldj.project.databinding.FragmentTripsBinding
+import com.bldj.project.views.HistoryFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 

@@ -95,10 +95,10 @@ class TravelersFragment : Fragment() {
                     )
                     deletedUser.isTraveller = mapUser["traveller"] as Boolean
 
-                    val index = findIndex(deletedUser)
+//                    val index = findIndex(deletedUser)
 
-                    users.removeAt(index)
-                    usersAdapter.notifyItemRemoved(index)
+//                    users.removeAt(index)
+//                    usersAdapter.notifyItemRemoved(index)
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}

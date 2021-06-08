@@ -6,7 +6,7 @@
         android:orientation="vertical"
 
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:context=".BottomSheetInfoTripFragment"
+        tools:context=".views.BottomSheetInfoTripFragment"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">

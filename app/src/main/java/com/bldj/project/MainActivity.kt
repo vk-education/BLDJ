@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -12,6 +11,10 @@ import androidx.fragment.app.Fragment
 import com.bldj.project.listeners.IBeTraveller
 import com.bldj.project.listeners.IGetAdvertInfo
 import com.bldj.project.listeners.IGetHistoryInfo
+import com.bldj.project.views.AdsFragment
+import com.bldj.project.views.BottomSheetInfoAds
+import com.bldj.project.views.BottomSheetInfoTripFragment
+import com.bldj.project.views.CreateFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
