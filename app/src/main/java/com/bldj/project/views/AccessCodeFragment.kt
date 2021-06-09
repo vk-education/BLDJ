@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bldj.project.R
+import com.google.firebase.auth.FirebaseAuth
 import data.ConstantValues
 
 class AccessCodeFragment : Fragment() {
@@ -33,9 +34,23 @@ class AccessCodeFragment : Fragment() {
     private fun verifyEmail() {
         val btn = inflaterThis.findViewById<Button>(R.id.ready_bttn)
         btn.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
-                .commit()
+            FirebaseAuth.getInstance().currentUser.reload().addOnSuccessListener {
+                if (FirebaseAuth.getInstance().currentUser.isEmailVerified) {
+                    parentFragmentManager.beginTransaction()
+                        .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
+                        .commit()
+                } else {
+                    Toast.makeText(context, "Подтвердите регистрацию на почте!", Toast.LENGTH_LONG)
+                        .show()
+                    ConstantValues.auth!!.addAuthStateListener {
+                        if (it.currentUser.isEmailVerified) {
+                            parentFragmentManager.beginTransaction()
+                                .replace((view?.parent as View).id, TripsFragment(), "LoginSuccess")
+                                .commit()
+                        }
+                    }
+                }
+            }
         }
         val user = ConstantValues.auth!!.currentUser
         if (!ConstantValues.alreadyCreated)
@@ -44,6 +59,7 @@ class AccessCodeFragment : Fragment() {
                     if (task.isSuccessful) {
                         Toast.makeText(context, "Email sent to ${user.email}", Toast.LENGTH_LONG)
                             .show()
+
                     } else {
                         Toast.makeText(
                             context,

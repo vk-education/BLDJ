@@ -69,33 +69,58 @@ class LoginFragment : Fragment() {
         ConstantValues.auth?.createUserWithEmailAndPassword(login, password)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("auth", "createUserWithEmail:success")
-                    val user = User(login, password)
-                    user.id = ConstantValues.auth?.currentUser!!.uid
-                    ConstantValues.user = user
-                    ConstantValues.alreadyCreated = false
-                    usersDbRef!!.child(login.replace(".", "")).setValue(user)
-                    parentFragmentManager.beginTransaction()
-                        .replace((view?.parent as View).id, AccessCodeFragment(), "LoginSuccess")
-                        .commit()
+                    if (login.endsWith("hse.ru") || login.endsWith("edu.hse.ru")) {
+                        Log.d("auth", "createUserWithEmail:success")
+                        val user = User(login, password)
+                        user.id = ConstantValues.auth?.currentUser!!.uid
+                        ConstantValues.user = user
+                        ConstantValues.alreadyCreated = false
+                        usersDbRef!!.child(login.replace(".", "")).setValue(user)
+                        parentFragmentManager.beginTransaction()
+                            .replace(
+                                (view?.parent as View).id,
+                                AccessCodeFragment(),
+                                "LoginSuccess"
+                            )
+                            .commit()
+                    } else {
+                        Toast.makeText(
+                            this.context, "Неверный домен почты",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
 
                 } else {
                     Log.i("authq", "createUserWithEmail:failure", task.exception)
                     ConstantValues.auth?.signInWithEmailAndPassword(login, password)
                         ?.addOnCompleteListener { taskAnother ->
                             if (taskAnother.isSuccessful) {
-                                val user = User(login, password)
-                                user.id = ConstantValues.auth?.currentUser!!.uid
-                                ConstantValues.user = user
-                                ConstantValues.alreadyCreated = true
-                                parentFragmentManager.beginTransaction()
-                                    .replace(
-                                        (view?.parent as View).id,
-                                        AccessCodeFragment(),
-                                        "LoginSuccess"
-                                    )
-                                    .commit()
+                                if (login.endsWith("hse.ru") || login.endsWith("edu.hse.ru")) {
+                                    var to = 0;
+                                    for (i in login.indices) {
+                                        if (login[i] == '@')
+                                            to = i
+                                    }
+                                    val name = login.substring(0, to)
+                                    val user = User(login, name, "-")
+                                    user.id = ConstantValues.auth?.currentUser!!.uid
+                                    ConstantValues.user = user
+                                    ConstantValues.alreadyCreated = true
+                                    parentFragmentManager.beginTransaction()
+                                        .replace(
+                                            (view?.parent as View).id,
+                                            AccessCodeFragment(),
+                                            "LoginSuccess"
+                                        )
+                                        .commit()
+                                } else {
+                                    Toast.makeText(
+                                        this.context, "Неверный домен почты",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+
                             } else {
                                 Toast.makeText(
                                     this.context, "Неверный пароль",

@@ -86,6 +86,7 @@ class SettingsFragment : Fragment() {
                                 if (user.id == FirebaseAuth.getInstance().currentUser.uid) {
                                     user.name = name.text.toString() + " " + lastname.text.toString()
                                     usersDbRef!!.child(user.email.replace(".","")).setValue(user)
+                                    ConstantValues.user!!.name = name.text.toString() + " "+ lastname.text.toString()
                                 }
                             }
                         }
