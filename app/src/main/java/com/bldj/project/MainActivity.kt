@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 //        opening()
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         FirebaseApp.initializeApp(this)
 
@@ -165,9 +165,7 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
             } else {
                 ConstantValues.MY_ADVERT = ad
                 ad.users.add(ConstantValues.user!!)
-                runBlocking {
-                    beTraveller(ad)
-                }
+                beTraveller(ad)
                 Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
             }
         } else {
@@ -179,8 +177,8 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
     /**
      * suspend fun for being a child
      */
-    private suspend fun beTraveller(ad: Advert) = coroutineScope {
-        launch {
+    private  fun beTraveller(ad: Advert)  {
+
             val advRef =
                 ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
             advRef?.child("${ad.from}-${ad.to}")?.child(ConstantValues.USER_DB_REFERENCE)
@@ -188,9 +186,12 @@ class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHist
 
             //ConstantValues.user!!.myAdvert = ad
             ConstantValues.user!!.isTraveller = true
+            Log.i("MainActTryToLog1", ConstantValues.user.toString())
+            Log.i("MainActTryToLog2", ConstantValues.user!!.email.toString())
+            Log.i("MainActTryToLog3", usersDbRef.toString())
             usersDbRef!!.child(ConstantValues.user!!.email.replace(".", ""))
                 .setValue(ConstantValues.user!!)
-        }
+
     }
 
     override fun onGetAdvertInfoClicked(ad: Advert) {

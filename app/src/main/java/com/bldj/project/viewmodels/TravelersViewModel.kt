@@ -64,7 +64,7 @@ class TravelersViewModel : ViewModel() {
                         )
                         deletedUser.isTraveller = mapUser["traveller"] as Boolean
                         val index = findIndex(deletedUser)
-                        listUsers.removeAt(index)
+//                        listUsers.removeAt(index)
                         _users.value = listUsers
                     }
 
@@ -81,7 +81,7 @@ class TravelersViewModel : ViewModel() {
      */
     private fun findIndex(deletedUser: User): Int {
         var deleteIndex: Int = -1
-        for (i in 0..listUsers.size) {
+        for (i in 0 until listUsers.size) {
             if (listUsers[i] == deletedUser) {
                 deleteIndex = i
                 break

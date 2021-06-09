@@ -40,7 +40,7 @@ class AdsViewModel : ViewModel() {
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
                 override fun onChildRemoved(snapshot: DataSnapshot) {
                     val deletedAdvert = snapshot.getValue(Advert::class.java)!!
-                    val index = findIndex(deletedAdvert, listAds)
+                    val index = findIndex(deletedAdvert)
                     listAds.removeAt(index)
                     _ads.value = listAds
                 }
@@ -55,9 +55,10 @@ class AdsViewModel : ViewModel() {
     /**
      * Method finds the index of <code>deletedAdvert</code> in <code>listAds</code>.
      */
-    private fun findIndex(deletedAdvert: Advert, listAds: List<Advert>): Int {
+    private fun findIndex(deletedAdvert: Advert): Int {
         var deleteIndex: Int = -1
-        for (i in listAds.indices) {
+        for (i in 0 until listAds.size) {
+            Log.i("ShowingAsViewModellllss", "${listAds[i]}\nтакже${deletedAdvert}")
             if (listAds[i] == deletedAdvert) {
                 deleteIndex = i
                 break
