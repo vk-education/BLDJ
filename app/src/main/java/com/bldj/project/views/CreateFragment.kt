@@ -122,11 +122,11 @@ class CreateFragment : Fragment() {
                         to,
                         price,
                         places,
-                        notes, arrayListOf(), ConstantValues.user!!.id//,
+                        notes, arrayListOf(ConstantValues.user!!), ConstantValues.user!!.id//,
                         //mutableListOf(ConstantValues.user!!) падает на стековерфлоу
                     )
                     //ConstantValues.MY_ADVERT = adv
-                    ConstantValues.user!!.myAdvert = adv
+                   // ConstantValues.user!!.myAdvert = adv
                     ConstantValues.user!!.isTraveller = true
                     runBlocking {
                         coroutineSetMyAdvert(adv, from, to)
