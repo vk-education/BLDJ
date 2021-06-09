@@ -71,7 +71,13 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
                     if (login.endsWith("hse.ru") || login.endsWith("edu.hse.ru")) {
                         Log.d("auth", "createUserWithEmail:success")
-                        val user = User(login, password)
+                        var to = 0;
+                        for (i in login.indices) {
+                            if (login[i] == '@')
+                                to = i
+                        }
+                        val name = login.substring(0, to)
+                        val user = User(login, name, "-")
                         user.id = ConstantValues.auth?.currentUser!!.uid
                         ConstantValues.user = user
                         ConstantValues.alreadyCreated = false
