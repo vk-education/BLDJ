@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import com.bldj.project.databinding.FragmentBottomInfoAdsBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.database.DatabaseReference
 import data.Advert
 import data.ConstantValues
 import java.text.SimpleDateFormat
@@ -16,11 +17,11 @@ import java.util.*
 
 class BottomSheetInfoAds : BottomSheetDialogFragment() {
 
-
     private lateinit var infoAdsBinding: FragmentBottomInfoAdsBinding
-
+    private lateinit var usersDbRef: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        usersDbRef = ConstantValues.database?.reference?.child(ConstantValues.USER_DB_REFERENCE)!!
     }
 
     override fun onCreateView(
@@ -50,24 +51,18 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
                 ConstantValues.database?.reference?.child(ConstantValues.HISTORY_DB_REFERENCE)
                     ?.child("${ads.from}-${ads.to}")
                     ?.setValue(ads)
-                val advRef =
-                    ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
-                advRef?.child("${ads.from}-${ads.to}")
-                    ?.removeValue()
+
+                setUsersNotTravellers(ads, usersDbRef)
             }
+
             infoAdsBinding.deleteAd.setOnClickListener {
                 val advRef =
                     ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
                 advRef?.child("${ads.from}-${ads.to}")
                     ?.removeValue()//child(ConstantValues.USER_DB_REFERENCE)
                 //?.setValue(ads.users)
-                ConstantValues.user!!.myAdvert = Advert()
-                ConstantValues.user!!.isTraveller = false
 
-                val usersDbRef =
-                    ConstantValues.database?.reference?.child(ConstantValues.USER_DB_REFERENCE)
-                usersDbRef!!.child(ConstantValues.user!!.email.replace(".", ""))
-                    .setValue(ConstantValues.user!!)
+                setUsersNotTravellers(ads, usersDbRef)
                 deleted = true
             }
         }
@@ -86,6 +81,29 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
 //                "сегодня в ${sdfHours.format(ads.date)}"
 //            else
 //                "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
+    }
+
+    /**
+     * Sets the value isTraveller to false in DB for all users in trip.
+     */
+    private fun setUsersNotTravellers(ads: Advert, usersDbRef: DatabaseReference) {
+        val advRef =
+            ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
+        advRef?.child("${ads.from}-${ads.to}")
+            ?.removeValue()
+
+        ConstantValues.user!!.myAdvert = Advert()
+        ConstantValues.user!!.isTraveller = false
+
+        //Делаем юзеров не попутчиками
+        usersDbRef.child(ConstantValues.user!!.email.replace(".", ""))
+            .setValue(ConstantValues.user!!)
+
+        for (us in ads.users) {
+            us.isTraveller = false
+            usersDbRef.child(us.email.replace(".", ""))
+                .setValue(us)
+        }
     }
 
     companion object {

@@ -41,6 +41,9 @@ class AdsViewModel : ViewModel() {
                 override fun onChildRemoved(snapshot: DataSnapshot) {
                     val deletedAdvert = snapshot.getValue(Advert::class.java)!!
                     val index = findIndex(deletedAdvert)
+                    if (listAds[index].users.contains(ConstantValues.user)) {
+                        ConstantValues.user?.isTraveller = false
+                    }
                     listAds.removeAt(index)
                     _ads.value = listAds
                 }

@@ -44,6 +44,7 @@ class HistoryViewModel : ViewModel() {
                     val index = findIndex(deletedAdvert, histAds)
                     histAds.removeAt(index)
                     _hist.value = histAds
+                    Log.i("USERDELETETCHO", ConstantValues.user?.isTraveller.toString())
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
