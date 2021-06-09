@@ -11,7 +11,7 @@
             android:id="@+id/historyLayout"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            tools:context=".HistoryFragment">
+            tools:context=".views.HistoryFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:background="@drawable/components_gray"

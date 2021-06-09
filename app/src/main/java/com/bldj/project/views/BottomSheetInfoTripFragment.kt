@@ -1,4 +1,4 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,7 +32,8 @@ class BottomSheetInfoTripFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ads = arguments?.getSerializable(BottomSheetInfoTripFragment.PARAM_AD) as? Advert ?: return
+        val ads =
+            arguments?.getSerializable(PARAM_AD) as? Advert ?: return
 
         val sdfHours = SimpleDateFormat("HH:mm", Locale.getDefault())
         val sdfDay = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
@@ -49,19 +50,6 @@ class BottomSheetInfoTripFragment : BottomSheetDialogFragment() {
             else
                 "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
         infoHistBinding.travellersInfoButton.setOnClickListener {
-//            val builder = AlertDialog.Builder(
-//                requireActivity()
-//            )
-
-           // val inflater = requireActivity().layoutInflater
-//            val dialog = LayoutInflater.from(context).inflate(R.la)
-//            val builder = AlertDialog.Builder(this).setView(dialog).setTitle("Друзья")
-//            val builder = AlertDialog.Builder(requireActivity()).setView(LayoutInflater.from(context).inflate(R.layout.))
-//            builder.setMessage("This is an Alert dialog in kotlin")
-//                .setCancelable(false)
-//                .setPositiveButton("ok") { dialog, id -> dismiss()}
-//            val alert = builder.create()
-//            alert.show()
 
             val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
             ft.addToBackStack(null);

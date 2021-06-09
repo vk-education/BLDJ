@@ -2,7 +2,6 @@ package com.bldj.project.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bldj.project.R
@@ -23,6 +22,7 @@ class AdAdapter(val onBeTravellerClicked: (ad: Advert) -> Unit) :
         get() = ads
         set(value) {
             ads = value
+            notifyDataSetChanged()
         }
 
     private lateinit var getInfoFunc: (ad: Advert) -> Unit
@@ -31,6 +31,7 @@ class AdAdapter(val onBeTravellerClicked: (ad: Advert) -> Unit) :
         get() = getInfoFunc
         set(value) {
             getInfoFunc = value
+
         }
 
 

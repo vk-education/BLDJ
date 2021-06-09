@@ -22,6 +22,7 @@ class HistoryAdapter(val onGetInfoClicked: (ad: Advert) -> Unit) :
         get() = ads
         set(value) {
             ads = value
+            notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {

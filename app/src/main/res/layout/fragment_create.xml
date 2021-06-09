@@ -15,7 +15,7 @@
                 android:background="@color/app_color"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                tools:context=".CreateFragment">
+                tools:context=".views.CreateFragment">
 
             <TextView
                     android:id="@+id/create_text"

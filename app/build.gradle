@@ -51,6 +51,8 @@ android {
 }
 
 dependencies {
+    //ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
     implementation 'com.github.giswangsj:AndRatingBar:1.0.5'
     implementation platform('com.google.firebase:firebase-bom:27.0.0')

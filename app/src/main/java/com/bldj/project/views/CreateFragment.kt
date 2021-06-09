@@ -1,4 +1,4 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bldj.project.R
 import com.google.firebase.database.DatabaseReference
 import data.Advert
 import data.ConstantValues

@@ -1,4 +1,4 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bldj.project.adapters.ViewPagerAdapter
 import com.bldj.project.databinding.FragmentTripsBinding
+import com.bldj.project.views.HistoryFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 
@@ -41,7 +42,10 @@ class TripsFragment : Fragment() {
         //tripsFragmentBinding.currentText.textSize = R.dimen._20ssp.toFloat()
         tripsFragmentBinding.historyText.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace((tripsFragmentBinding.root.parent/*currentTrips.parent*/ as View).id, HistoryFragment())
+                .replace(
+                    (tripsFragmentBinding.root.parent/*currentTrips.parent*/ as View).id,
+                    HistoryFragment()
+                )
                 .addToBackStack(null).commit()
         }
 //        tripsFragmentBinding.historyText.setOnClickListener {

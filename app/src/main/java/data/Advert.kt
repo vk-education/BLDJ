@@ -13,4 +13,13 @@ data class Advert(
     val notes: String = "",
     val users: MutableList<User> = arrayListOf(),
     val owner: String = ""
-) : Serializable
+) : Serializable {
+    override fun equals(other: Any?): Boolean {
+        var equal = false
+        if (other is Advert) {
+            equal =
+                date == other.date && from == other.from && to == other.to && owner == other.owner
+        }
+        return equal
+    }
+}

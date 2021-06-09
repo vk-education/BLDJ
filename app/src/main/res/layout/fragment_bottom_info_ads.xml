@@ -15,7 +15,7 @@
             android:orientation="vertical"
 
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-            tools:context=".BottomSheetInfoTripFragment">
+            tools:context=".views.BottomSheetInfoTripFragment">
 
         <ImageView
                 android:background="@drawable/ic_baseline_horizontal_rule_24"

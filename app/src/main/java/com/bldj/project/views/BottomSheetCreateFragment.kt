@@ -1,9 +1,10 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bldj.project.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 /**

@@ -1,14 +1,14 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bldj.project.R
 import com.bldj.project.adapters.UsersAdapter
 import com.bldj.project.databinding.FragmentTravellersInfoDialogBinding
 import data.User

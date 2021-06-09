@@ -1,4 +1,4 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatDelegate
 import com.bldj.project.databinding.SettingsLayoutBinding
@@ -16,12 +15,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import data.ConstantValues
-import data.IBackButton
 import data.User
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class SettingsFragment : Fragment(), IBackButton {
+class SettingsFragment : Fragment() {
     private var advertsDbRef: DatabaseReference? = null
     lateinit var inflaterThis: View
     private lateinit var name: EditText
@@ -108,9 +106,5 @@ class SettingsFragment : Fragment(), IBackButton {
 
         //return inflaterThis
         return settingsLayoutBinding.root
-    }
-
-    override fun onBackPressed(): Boolean {
-        TODO("Not yet implemented")
     }
 }
