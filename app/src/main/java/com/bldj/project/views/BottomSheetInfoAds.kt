@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import com.bldj.project.R
 import com.bldj.project.databinding.FragmentBottomInfoAdsBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.database.DatabaseReference
 import data.Advert
 import data.ConstantValues
+import data.User
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -43,6 +45,28 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
         if (ads.owner != ConstantValues.user!!.id) {
             infoAdsBinding.confirmAd.visibility = View.GONE
             infoAdsBinding.deleteAd.visibility = View.GONE
+            //infoAdsBinding.deleteAd.visibility = View.VISIBLE
+            infoAdsBinding.deleteAd.background = context?.getDrawable(R.drawable.ic_exit)
+            infoAdsBinding.deleteAd.setOnClickListener {
+                val advRef =
+                ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
+                var usr = User()
+                var index = 0
+                for(users in ads.users){
+                    if(users.id == ConstantValues.user!!.id){
+                        usr = users
+                        usr.isTraveller = false
+                        break
+                    }
+                    index++;
+                }
+                ads.users.removeAt(index)
+                advRef?.child("${ads.from}-${ads.to}")?.setValue(ads)
+
+                ConstantValues.user!!.isTraveller = false
+                usersDbRef.child(ConstantValues.user!!.email.replace(".", ""))
+                    .setValue(ConstantValues.user!!)
+            }
         } else {
             infoAdsBinding.confirmAd.visibility = View.VISIBLE
             infoAdsBinding.deleteAd.visibility = View.VISIBLE

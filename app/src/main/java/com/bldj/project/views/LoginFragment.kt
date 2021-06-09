@@ -38,7 +38,18 @@ class LoginFragment : Fragment() {
 
         val navigationBar = activity?.findViewById<BottomNavigationView>(R.id.nav_bar)
         navigationBar!!.visibility = View.GONE
-        loginLayoutBinding.goBttn.setOnClickListener { onLogin() }
+        loginLayoutBinding.goBttn.setOnClickListener {
+            val password = loginLayoutBinding.passwordEdit.text.toString()
+            val login = loginLayoutBinding.loginEdit.text.toString()
+            if (password.isNotBlank() && login.isNotBlank())
+                onLogin()
+            else{
+                Toast.makeText(
+                    this.context, "Введите данные!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
         return loginLayoutBinding.root
     }
 
