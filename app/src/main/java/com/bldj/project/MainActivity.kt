@@ -2,27 +2,59 @@ package com.bldj.project
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.StrictMode
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import com.bldj.project.listeners.IBeTraveller
+import com.bldj.project.listeners.IGetAdvertInfo
+import com.bldj.project.listeners.IGetHistoryInfo
+import com.bldj.project.views.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import data.Advert
+import data.ConstantValues
 import data.IBackButton
+import data.User
+import kotlinx.coroutines.*
 import java.security.InvalidParameterException
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IBeTraveller, IGetAdvertInfo, IGetHistoryInfo {
 
-    private var auth: FirebaseAuth? = null
-    private var database: FirebaseDatabase? = null
     private var usersDbRef: DatabaseReference? = null
     private var usersChildEventListener: ChildEventListener? = null
     private var oldId = -1
 
+    private fun opening() {
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build()
+            )
+
+            StrictMode.setVmPolicy(
+                StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyDeath()
+                    .build()
+            )
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+//        opening()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         FirebaseApp.initializeApp(this)
@@ -35,25 +67,36 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
+        ConstantValues.auth = Firebase.auth
+        if (ConstantValues.auth?.currentUser != null) {
+            if (ConstantValues.user == null) {
+                ConstantValues.database = FirebaseDatabase.getInstance()
+                usersDbRef =
+                    ConstantValues.database?.reference?.child(ConstantValues.USER_DB_REFERENCE)
+                usersChildEventListener = object : ChildEventListener {
+                    override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                        val user: User = snapshot.getValue(User::class.java)!!
+                        Log.i("POCHRMU", user.toString())
+                        if (user.id == FirebaseAuth.getInstance().currentUser.uid) {
+                            ConstantValues.user = user
+                            Log.i("POCHRMU1", ConstantValues.user.toString())
+                        }
+                    }
 
+                    override fun onChildChanged(
+                        snapshot: DataSnapshot,
+                        previousChildName: String?
+                    ) {
+                    }
 
-        auth = Firebase.auth
-        if (auth?.currentUser != null) {
-            database = FirebaseDatabase.getInstance()
-            usersDbRef = database?.reference?.child("users")
-            usersChildEventListener = object : ChildEventListener {
-                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {}
-
-                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
-
-                override fun onChildRemoved(snapshot: DataSnapshot) {}
-                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
-                override fun onCancelled(error: DatabaseError) {}
+                    override fun onChildRemoved(snapshot: DataSnapshot) {}
+                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+                    override fun onCancelled(error: DatabaseError) {}
+                }
+                usersDbRef?.addChildEventListener(usersChildEventListener as ChildEventListener)
             }
-            usersDbRef?.addChildEventListener(usersChildEventListener as ChildEventListener)
             moveToFragment(TripsFragment())
         } else {
-
             moveToFragment(LoginFragment())
         }
 //        Log.i("Authmail", auth?.currentUser?.email.toString())
@@ -100,8 +143,64 @@ class MainActivity : AppCompatActivity() {
         (fragment as? IBackButton)?.onBackPressed()?.not()?.let {
             super.onBackPressed()
         }
+    }
 
+    override fun onBeTravellerClicked(ad: Advert) {
+        Log.i("onBeTravellerClicked", ad.from)
+        if (ad == null) {
+            Log.i("check", "ad === null")
+        } else if (ad.users == null) {
+            Log.i("check", "ad.users === null")
+        } else if (ConstantValues.user == null) {
+            Log.i("check", "user === null")
+        }
+        //Checking if user is already a traveler of the advert or other advert.
+        Log.i("POCHRMU2", ad.users.toString())
+
+        if (ad.users.size < ad.places) {
+            if (ConstantValues.user?.isTraveller!!) {
+                Toast.makeText(this, "Вы уже находитесь в другой поездке", Toast.LENGTH_LONG).show()
+            } else if (ad.users.contains(ConstantValues.user) || ad.owner == ConstantValues.user!!.id) {
+                Toast.makeText(this, "Вы уже попутчик", Toast.LENGTH_LONG).show()
+            } else {
+                ConstantValues.MY_ADVERT = ad
+                ad.users.add(ConstantValues.user!!)
+                beTraveller(ad)
+                Toast.makeText(this, "Поздравляю! Вы теперь попутчик.", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Toast.makeText(this, "Для вас нет места.", Toast.LENGTH_LONG).show()
+        }
+//        ConstantValues.MY_ADVERT = ad
+    }
+
+    /**
+     * suspend fun for being a child
+     */
+    private  fun beTraveller(ad: Advert)  {
+
+            val advRef =
+                ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
+            advRef?.child("${ad.from}-${ad.to}")?.child(ConstantValues.USER_DB_REFERENCE)
+                ?.setValue(ad.users)
+
+            //ConstantValues.user!!.myAdvert = ad
+            ConstantValues.user!!.isTraveller = true
+            Log.i("MainActTryToLog1", ConstantValues.user.toString())
+            Log.i("MainActTryToLog2", ConstantValues.user!!.email.toString())
+            Log.i("MainActTryToLog3", usersDbRef.toString())
+            usersDbRef!!.child(ConstantValues.user!!.email.replace(".", ""))
+                .setValue(ConstantValues.user!!)
 
     }
 
+    override fun onGetAdvertInfoClicked(ad: Advert) {
+        val bottomSheet = BottomSheetInfoAds.newInstance(ad)
+        bottomSheet.show(supportFragmentManager, "TAG")
+    }
+
+    override fun onGetHistoryInfoClicked(ad: Advert) {
+        val bottomSheet = BottomSheetInfoTripFragment.newInstance(ad)
+        bottomSheet.show(supportFragmentManager, "TAG")
+    }
 }

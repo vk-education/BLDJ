@@ -29,7 +29,7 @@
                 android:id="@+id/login_edit"
                 android:inputType="textEmailAddress"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="48dp"
+                android:layout_marginBottom="25dp"
                 android:layout_width="wrap_content"
                 android:maxLines="1"
                 android:textColor="@color/text_default"
@@ -38,24 +38,24 @@
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
         <EditText
                 android:alpha="0.55"
                 android:backgroundTint="#000000"
                 android:drawablePadding="10dp"
-                android:drawableStart="@drawable/mail"
-                android:hint="Введите пароль"
+                android:drawableStart="@drawable/ic_key"
+                android:hint="@string/enter_pswd"
                 android:id="@+id/password_edit"
                 android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="48dp"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:maxLines="1"
                 android:textColor="@color/text_default"
                 android:textColorHint="@color/text_default"
                 app:layout_constraintBottom_toTopOf="@id/go_bttn"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="@id/login_edit"
+                app:layout_constraintStart_toStartOf="@id/login_edit" />
 
         <Button
                 android:background="@drawable/button_corners"
@@ -67,7 +67,7 @@
                 android:paddingEnd="90dp"
                 android:paddingStart="90dp"
                 android:shadowColor="@color/black"
-                android:text="Далее"
+                android:text="@string/dalee"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="24sp"

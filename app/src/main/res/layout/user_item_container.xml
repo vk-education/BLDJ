@@ -10,8 +10,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/selector_plates_ads"
+            android:elevation="4dp"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
+            android:layout_marginBottom="14dp"
+            android:layout_width="match_parent">
 
         <View
                 android:id="@+id/viewSupporter"

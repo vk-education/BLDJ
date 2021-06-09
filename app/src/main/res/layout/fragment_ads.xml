@@ -11,14 +11,14 @@
             android:background="@color/app_color"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            tools:context=".AdsFragment">
+            tools:context=".views.AdsFragment">
 
         <TextView
                 android:id="@+id/avail_text"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
                 android:layout_width="wrap_content"
-                android:text="Доступные объявления"
+                android:text="@string/avail_ads"
                 android:textColor="@color/text_default"
                 android:textSize="32sp"
                 android:textStyle="bold"
@@ -28,14 +28,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_movies"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="24dp"
                 android:layout_width="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/g_right"
                 app:layout_constraintStart_toStartOf="@id/g_left"
-                app:layout_constraintTop_toBottomOf="@id/avail_text"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                />
+                app:layout_constraintTop_toBottomOf="@id/avail_text" />
 
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/g_left"

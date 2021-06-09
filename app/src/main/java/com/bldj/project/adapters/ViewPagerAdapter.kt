@@ -3,8 +3,8 @@ package com.bldj.project.adapters
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.bldj.project.MyTripsFragment
-import com.bldj.project.TravelersFragment
+import com.bldj.project.views.MyTripsFragment
+import com.bldj.project.views.TravelersFragment
 
 class ViewPagerAdapter(fragmentManager: Fragment) : FragmentStateAdapter(fragmentManager) {
 

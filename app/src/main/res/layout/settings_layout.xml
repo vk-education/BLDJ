@@ -8,190 +8,158 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:background="@color/app_color"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
         <Button
-                android:id="@+id/back_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:drawableLeft="@drawable/ic_arrow"
-                android:text="Настройки"
-                android:textColor="@color/text_default"
-                android:textAllCaps="false"
-                android:textSize="24dp"
-                android:gravity="start|center"
-                android:drawablePadding="22dp"
                 android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_arrow"
+                android:drawablePadding="22dp"
+                android:gravity="start|center"
+                android:id="@+id/back_button"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="3dp" />
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:text="@string/settings"
+                android:textAllCaps="false"
+                android:textColor="@color/text_default"
+                android:textSize="24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <View
+                android:background="@color/text_greyBlack"
                 android:id="@+id/line_back"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/back_button"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="24dp"
                 android:layout_height="1dp"
-                android:background="@color/text_greyBlack" />
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="1dp"
+                android:layout_width="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/back_button" />
 
         <EditText
+                android:background="@drawable/components_gray"
+                android:gravity="center_horizontal|center_vertical"
+                android:hint="@string/enter_name"
                 android:id="@+id/enter_name"
-                android:layout_width="match_parent"
                 android:layout_height="33dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="51dp"
+                android:layout_width="match_parent"
+                android:textColor="#8B8B8B"
+                android:textColorHint="#8B8B8B"
+                android:textSize="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/line_back"
-                android:background="@drawable/components_gray"
-                android:layout_marginStart="18dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginTop="51dp"
-                android:textSize="16dp"
-                android:textColorHint="#8B8B8B"
-                android:textColor="#8B8B8B"
-                android:hint="Введите имя"
-                android:gravity="center_horizontal|center_vertical"
 
                 />
 
         <EditText
+                android:background="@drawable/components_gray"
+                android:gravity="center_horizontal|center_vertical"
+                android:hint="@string/enter_surname"
                 android:id="@+id/enter_lastname"
-                android:layout_width="match_parent"
                 android:layout_height="33dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="21dp"
+                android:layout_width="match_parent"
+                android:textColor="#8B8B8B"
+                android:textColorHint="#8B8B8B"
+                android:textSize="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/enter_name"
-                android:background="@drawable/components_gray"
-                android:layout_marginStart="18dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginTop="21dp"
-                android:textColor="#8B8B8B"
-                android:textSize="16dp"
-                android:textColorHint="#8B8B8B"
-                android:hint="Введите фамилию"
-                android:gravity="center_horizontal|center_vertical"
 
                 />
 
-        <Button
-                android:id="@+id/notification1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/enter_lastname"
-                android:text="Уведомления"
-                android:gravity="start|center"
-                android:textColor="@color/text_greyBlack"
-                android:layout_marginTop="22dp"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:layout_marginStart="22dp"
-                android:background="@android:color/transparent"
-                android:textSize="14sp"
-                android:layout_marginEnd="22dp"
-                android:drawableRight="@drawable/ic_ring_green" />
+        <!--        <Button-->
+        <!--                android:id="@+id/notification1"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/enter_lastname"-->
+        <!--                android:text="Уведомления"-->
+        <!--                android:gravity="start|center"-->
+        <!--                android:textColor="@color/text_greyBlack"-->
+        <!--                android:layout_marginTop="22dp"-->
+        <!--                android:textAllCaps="false"-->
+        <!--                android:textStyle="bold"-->
+        <!--                android:layout_marginStart="22dp"-->
+        <!--                android:background="@android:color/transparent"-->
+        <!--                android:textSize="14sp"-->
+        <!--                android:layout_marginEnd="22dp"-->
+        <!--                android:drawableRight="@drawable/ic_ring_green" />-->
 
-        <View
-                android:id="@+id/line_notif"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notification1"
+        <!--        <View-->
+        <!--                android:id="@+id/line_notif"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/notification1"-->
 
-                android:layout_width="match_parent"
-                android:layout_marginTop="1dp"
-                android:layout_marginStart="11dp"
-                android:layout_marginEnd="11dp"
-                android:layout_height="1dp"
-                android:background="@color/text_default" />
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_marginTop="1dp"-->
+        <!--                android:layout_marginStart="11dp"-->
+        <!--                android:layout_marginEnd="11dp"-->
+        <!--                android:layout_height="1dp"-->
+        <!--                android:background="@color/text_default" />-->
 
-        <TextView
-                android:id="@+id/night_theme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_notif"
-                android:text="Ночная тема"
-                android:gravity="start|center"
-                android:textColor="@color/text_greyBlack"
-                android:layout_marginTop="13dp"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:layout_marginStart="22dp"
+        <!--        <TextView-->
+        <!--                android:id="@+id/night_theme"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/line_notif"-->
+        <!--                android:text="Ночная тема"-->
+        <!--                android:gravity="start|center"-->
+        <!--                android:textColor="@color/text_greyBlack"-->
+        <!--                android:layout_marginTop="13dp"-->
+        <!--                android:textAllCaps="false"-->
+        <!--                android:textStyle="bold"-->
+        <!--                android:layout_marginStart="22dp"-->
 
-                android:background="@android:color/transparent"
-                android:textSize="14sp"
-                android:layout_marginEnd="50dp" />
+        <!--                android:background="@android:color/transparent"-->
+        <!--                android:textSize="14sp"-->
+        <!--                android:layout_marginEnd="50dp" />-->
 
-        <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/night_theme"
-                app:layout_constraintTop_toBottomOf="@id/line_notif"
-                android:layout_marginTop="9dp" />
+        <!--        <Switch-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintLeft_toRightOf="@id/night_theme"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/line_notif"-->
+        <!--                android:layout_marginTop="9dp" />-->
 
-        <View
-                android:id="@+id/line_theme"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/night_theme"
+        <!--        <View-->
+        <!--                android:id="@+id/line_theme"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/night_theme"-->
 
-                android:layout_width="match_parent"
-                android:layout_marginTop="14dp"
-                android:layout_marginStart="11dp"
-                android:layout_marginEnd="11dp"
-                android:layout_height="1dp"
-                android:background="@color/text_default" />
-
-        <TextView
-                android:id="@+id/language_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_theme"
-                android:text="Выбор языка"
-                android:gravity="start|center"
-                android:textColor="@color/text_greyBlack"
-                android:layout_marginTop="13dp"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:layout_marginStart="22dp"
-
-                android:background="@android:color/transparent"
-                android:textSize="14sp"
-                android:layout_marginEnd="100dp" />
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/language_text"
-                app:layout_constraintTop_toBottomOf="@id/line_theme"
-                android:text="Русский"
-                android:textColor="@color/text_default"
-                android:layout_marginTop="13dp"
-                android:drawableLeft="@drawable/flag"
-                android:drawablePadding="4dp" />
-
-
-        <View
-                android:id="@+id/line_language"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/language_text"
-
-                android:layout_width="match_parent"
-                android:layout_marginTop="14dp"
-                android:layout_marginStart="11dp"
-                android:layout_marginEnd="11dp"
-                android:layout_height="1dp"
-                android:background="@color/text_default" />
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_marginTop="14dp"-->
+        <!--                android:layout_marginStart="11dp"-->
+        <!--                android:layout_marginEnd="11dp"-->
+        <!--                android:layout_height="1dp"-->
+        <!--                android:background="@color/text_default" />-->
 
         <Button
                 android:id="@+id/switch_btn"
-                android:layout_marginTop="30dp"
-                android:text="Enable Dark Mode"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:text="@string/enable_dark_mode"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/language_text" />
+                app:layout_constraintTop_toBottomOf="@id/enter_lastname" />
 
+        <Button
+                android:background="#BADCFF"
+                android:elevation="1dp"
+                android:id="@+id/edit_name"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/change"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switch_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

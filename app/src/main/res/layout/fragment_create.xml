@@ -15,7 +15,7 @@
                 android:background="@color/app_color"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                tools:context=".CreateFragment">
+                tools:context=".views.CreateFragment">
 
             <TextView
                     android:id="@+id/create_text"
@@ -23,7 +23,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="23dp"
                     android:layout_width="wrap_content"
-                    android:text="Создать объявление"
+                    android:text="@string/create_ad"
                     android:textColor="@color/text_default"
                     android:textSize="32sp"
                     android:textStyle="bold"
@@ -44,28 +44,28 @@
                 <EditText
                         android:drawablePadding="12dp"
                         android:drawableStart="@drawable/ic_a_point"
-                        android:hint="Откуда едем?"
-                        android:textColorHint="#8B8B8B"
+                        android:hint="@string/from_go"
                         android:id="@+id/A_point"
                         android:layout_height="0dp"
                         android:layout_marginStart="3dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textColorHint="#8B8B8B" />
 
                 <EditText
                         android:drawablePadding="12dp"
                         android:drawableStart="@drawable/ic_b_point"
-                        android:hint="Куда едем?"
-                        android:textColorHint="#8B8B8B"
+                        android:hint="@string/to_go"
                         android:id="@+id/B_point"
                         android:layout_alignParentBottom="true"
                         android:layout_height="0dp"
                         android:layout_marginStart="3dp"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textColorHint="#8B8B8B" />
             </LinearLayout>
 
             <TextView
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="51dp"
                     android:layout_width="wrap_content"
-                    android:text="Цена:"
+                    android:text="@string/price"
                     android:textColor="@color/text_default"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@id/edit_price"
@@ -83,6 +83,7 @@
             <EditText
                     android:background="@drawable/components_gray"
                     android:id="@+id/edit_price"
+                    android:inputType="numberDecimal"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_width="60dp"
@@ -92,8 +93,8 @@
                     android:paddingStart="10dp"
                     android:paddingTop="5dp"
                     android:textAlignment="center"
-                    android:textSize="20sp"
                     android:textColor="@color/black"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@id/price_create_text"
                     app:layout_constraintStart_toEndOf="@id/price_create_text"
                     app:layout_constraintTop_toBottomOf="@id/frame_way"
@@ -105,7 +106,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_marginTop="51dp"
                     android:layout_width="wrap_content"
-                    android:text="Количество мест:"
+                    android:text="@string/place_cnt"
                     android:textColor="@color/text_default"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@id/edit_places"
@@ -114,6 +115,7 @@
             <EditText
                     android:background="@drawable/components_gray"
                     android:id="@+id/edit_places"
+                    android:inputType="number"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_width="45dp"
@@ -123,29 +125,41 @@
                     android:paddingStart="10dp"
                     android:paddingTop="5dp"
                     android:textAlignment="center"
-                    android:textSize="20sp"
                     android:textColor="@color/black"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@id/price_places_text"
                     app:layout_constraintEnd_toStartOf="@id/g_right"
                     app:layout_constraintTop_toBottomOf="@id/frame_way"
                     app:layout_constraintTop_toTopOf="@id/price_places_text" />
 
+            <Button
+                    android:background="@drawable/button_corners"
+                    android:id="@+id/time_picker"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="150dp"
+                    android:text="@string/pick_time"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/price_create_text" />
+
             <EditText
                     android:background="@drawable/components_gray"
                     android:gravity="start"
-                    android:hint="Дополнительные комментарии..."
-                    android:textColorHint="#8B8B8B"
-                    android:textColor="@color/black"
+                    android:hint="@string/notes_str"
                     android:id="@+id/create_comments"
                     android:layout_height="0dp"
                     android:layout_marginBottom="38dp"
-                    android:layout_marginTop="51dp"
+                    android:layout_marginTop="20dp"
                     android:layout_width="0dp"
                     android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#8B8B8B"
                     app:layout_constraintBottom_toTopOf="@id/create_ad"
                     app:layout_constraintEnd_toEndOf="@id/g_right"
                     app:layout_constraintStart_toStartOf="@id/g_left"
-                    app:layout_constraintTop_toBottomOf="@id/price_create_text" />
+                    app:layout_constraintTop_toBottomOf="@id/time_picker" />
 
             <Button
                     android:background="@drawable/components_gray"
@@ -154,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="25dp"
                     android:layout_width="0dp"
-                    android:text="Опубликовать"
+                    android:text="@string/publish_btn"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

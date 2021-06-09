@@ -1,18 +1,18 @@
-package com.bldj.project
+package com.bldj.project.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bldj.project.R
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-
-class MyTripsFragment : Fragment() {
-
-
+/**
+ * Нижняя панель при нажатии на кнопку опубликовать.
+ */
+class BottomSheetCreateFragment : BottomSheetDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -20,8 +20,6 @@ class MyTripsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_trips, container, false)
+        return inflater.inflate(R.layout.fragment_bottom_sheet_create, container, false)
     }
-
-
 }

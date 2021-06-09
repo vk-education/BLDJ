@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:context=".BottomSheetCreateFragment"
+        tools:context=".views.BottomSheetCreateFragment"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
@@ -22,7 +22,7 @@
             android:layout_marginTop="23dp"
             android:layout_width="wrap_content"
             android:minLines="2"
-            android:text="Объявление опубликовано!"
+            android:text="@string/ad_published"
             android:textAlignment="center"
             android:textColor="#489973"
             android:textSize="36sp" />

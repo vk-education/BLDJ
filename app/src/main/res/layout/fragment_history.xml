@@ -11,7 +11,7 @@
             android:id="@+id/historyLayout"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            tools:context=".HistoryFragment">
+            tools:context=".views.HistoryFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:background="@drawable/components_gray"
@@ -27,7 +27,7 @@
                     android:layout_height="match_parent"
                     android:layout_width="wrap_content"
                     android:paddingEnd="@dimen/_8sdp"
-                    android:text="Текущее"
+                    android:text="@string/current"
                     android:textSize="@dimen/_18ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -37,26 +37,36 @@
                     android:id="@+id/historyText"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="История"
+                    android:text="@string/history_str"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/currentText"
                     app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-                android:id="@+id/back"
-                android:gravity="center"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_movies"
+                android:layout_height="0dp"
+                android:layout_marginTop="24dp"
+                android:layout_width="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/g_right"
+                app:layout_constraintStart_toStartOf="@id/g_left"
+                app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/g_left"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="обратно"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:layout_height="0dp"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                app:layout_constraintTop_toBottomOf="@id/layoutHeader" />-->
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="8dp" />
 
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/g_right"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="8dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
