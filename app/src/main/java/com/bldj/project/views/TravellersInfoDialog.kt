@@ -40,7 +40,7 @@ class TravellersInfoDialog(private var users: MutableList<User>) : DialogFragmen
                 invalidate()
             }
             list.adapter!!.notifyDataSetChanged()
-            builder.setView(binding.root).setTitle("Попутчики")
+            builder.setView(binding.root).setTitle(getString(R.string.travelers_str))
                 .setNegativeButton("OK") { dialog, id ->
                     getDialog()?.cancel()
                 }

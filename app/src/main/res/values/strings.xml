@@ -39,4 +39,6 @@
     <string name="enter_surname">Введите фамилию</string>
     <string name="change">Изменить</string>
     <string name="enable_dark_mode">Включить темую тему</string>
+    <string name="today_at">сегодня в %s</string>
+    <string name="not_today">%s в %s</string>
 </resources>

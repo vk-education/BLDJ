@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bldj.project.R
 import com.bldj.project.adapters.ViewPagerAdapter
 import com.bldj.project.databinding.FragmentTripsBinding
 import com.bldj.project.views.HistoryFragment
@@ -30,8 +31,8 @@ class TripsFragment : Fragment() {
             tripsFragmentBinding.viewPager
         ) { tab, position ->
             when (position) {
-                0 -> tab.text = "Мои поездки"
-                1 -> tab.text = "Попутчики"
+                0 -> tab.text = getString(R.string.my_poezdki)
+                1 -> tab.text = getString(R.string.travelers_str)
             }
         }.attach()
 //        val twelveDp = TypedValue.applyDimension(
