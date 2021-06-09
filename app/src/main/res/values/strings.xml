@@ -41,4 +41,5 @@
     <string name="enable_dark_mode">Включить темую тему</string>
     <string name="today_at">сегодня в %s</string>
     <string name="not_today">%s в %s</string>
+    <string name="going_at">едем в %s</string>
 </resources>

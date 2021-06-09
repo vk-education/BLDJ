@@ -96,7 +96,7 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
         Log.i("STRANGEVAL", "${ads.places} ${ads.users.size}");
 
         infoAdsBinding.notes.text = ads.notes
-        infoAdsBinding.time.text = "едем в ${ads.departTime}"
+        infoAdsBinding.time.text = getString(R.string.going_at, ads.departTime)
 //            if (sdfDay.format(ads.date).equals(currentDate))
 //                "сегодня в ${sdfHours.format(ads.date)}"
 //            else
