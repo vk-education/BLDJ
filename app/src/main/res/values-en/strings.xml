@@ -39,4 +39,6 @@
     <string name="enter_surname">Enter surname</string>
     <string name="change">Change</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
+    <string name="today_at">today at %s</string>
+    <string name="not_today">%s at %s</string>
 </resources>

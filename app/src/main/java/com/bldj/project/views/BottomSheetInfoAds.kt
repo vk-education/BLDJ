@@ -48,18 +48,14 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
             infoAdsBinding.deleteAd.visibility = View.VISIBLE
             infoAdsBinding.confirmAd.setOnClickListener {
                 //Уехали
+                setUsersNotTravellers(ads, usersDbRef)
                 ConstantValues.database?.reference?.child(ConstantValues.HISTORY_DB_REFERENCE)
                     ?.child("${ads.from}-${ads.to}")
                     ?.setValue(ads)
-
-                setUsersNotTravellers(ads, usersDbRef)
             }
 
             infoAdsBinding.deleteAd.setOnClickListener {
-                val advRef =
-                    ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
-                advRef?.child("${ads.from}-${ads.to}")
-                    ?.removeValue()//child(ConstantValues.USER_DB_REFERENCE)
+                //child(ConstantValues.USER_DB_REFERENCE)
                 //?.setValue(ads.users)
 
                 setUsersNotTravellers(ads, usersDbRef)

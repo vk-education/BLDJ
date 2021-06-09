@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentTransaction
+import com.bldj.project.R
 import com.bldj.project.databinding.FragmentBottomInfoTripBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import data.Advert
@@ -46,9 +47,9 @@ class BottomSheetInfoTripFragment : BottomSheetDialogFragment() {
         infoHistBinding.notes.text = ads.notes
         infoHistBinding.time.text =
             if (sdfDay.format(ads.date).equals(currentDate))
-                "сегодня в ${sdfHours.format(ads.date)}"
+                getString(R.string.today_at, sdfHours.format(ads.date))
             else
-                "${sdfDay.format(ads.date)} в ${sdfHours.format(ads.date)}"
+                getString(R.string.not_today, sdfDay.format(ads.date), sdfHours.format(ads.date))
         infoHistBinding.travellersInfoButton.setOnClickListener {
 
             val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
