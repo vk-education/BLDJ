@@ -53,9 +53,9 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         historyFragmentBinding = FragmentHistoryBinding.inflate(inflater, container, false)
-        historyFragmentBinding.back.setOnClickListener {
-            parentFragmentManager.popBackStackImmediate()
-        }
+//        historyFragmentBinding.back.setOnClickListener {
+//            parentFragmentManager.popBackStackImmediate()
+//        }
         historyFragmentBinding.currentText.setOnClickListener {
             if (parentFragmentManager.backStackEntryCount > 0) {
                 parentFragmentManager.popBackStackImmediate();

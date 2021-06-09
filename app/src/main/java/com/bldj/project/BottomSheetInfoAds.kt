@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import com.bldj.project.databinding.FragmentBottomInfoAdsBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.database.*
 import data.Advert
 import data.ConstantValues
+import data.User
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,6 +20,8 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
 
 
     private lateinit var infoAdsBinding: FragmentBottomInfoAdsBinding
+    private lateinit var usersDbRef: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +39,8 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val ads = arguments?.getSerializable(PARAM_AD) as? Advert ?: return
-
+        usersDbRef = FirebaseDatabase.getInstance().reference
+            .child(ConstantValues.USER_DB_REFERENCE)
         val sdfHours = SimpleDateFormat("HH:mm", Locale.getDefault())
         val sdfDay = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
         val currentDate = sdfDay.format(Date())
@@ -58,6 +63,10 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
             infoAdsBinding.deleteAd.setOnClickListener {
                 val advRef =
                     ConstantValues.database?.reference?.child(ConstantValues.ADVERTS_DB_REFERENCE)
+
+                for (usr in ads.users) {
+                    updateUser(usr);
+                }
                 advRef?.child("${ads.from}-${ads.to}")
                     ?.removeValue()//child(ConstantValues.USER_DB_REFERENCE)
                 //?.setValue(ads.users)
@@ -97,4 +106,26 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
 
         var deleted: Boolean = false
     }
+
+    fun updateUser(user: User) {
+        val usersChildEventListener = object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val newUser = snapshot.getValue(User::class.java)
+                if (newUser?.id == user.id) {
+                    newUser.isTraveller = false
+                    usersDbRef!!.child(ConstantValues.user!!.email.replace(".", ""))
+                        .setValue(ConstantValues.user!!)
+                }
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+            override fun onCancelled(error: DatabaseError) {}
+        }
+        usersDbRef.addChildEventListener(usersChildEventListener)
+    }
+
 }
