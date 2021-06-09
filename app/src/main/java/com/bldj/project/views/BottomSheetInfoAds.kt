@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import com.bldj.project.R
 import com.bldj.project.databinding.FragmentBottomInfoAdsBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.database.DatabaseReference
@@ -72,7 +73,7 @@ class BottomSheetInfoAds : BottomSheetDialogFragment() {
         Log.i("STRANGEVAL", "${ads.places} ${ads.users.size}");
 
         infoAdsBinding.notes.text = ads.notes
-        infoAdsBinding.time.text = "едем в ${ads.departTime}"
+        infoAdsBinding.time.text = getString(R.string.going_at, ads.departTime)
 //            if (sdfDay.format(ads.date).equals(currentDate))
 //                "сегодня в ${sdfHours.format(ads.date)}"
 //            else
